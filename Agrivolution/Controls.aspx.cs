@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Data.SqlClient;
 using System.Collections;
 using System.Data;
+using System.Web.UI.WebControls;
 
 namespace Agrivolution
 {
@@ -26,11 +27,65 @@ namespace Agrivolution
                 new DataColumn("groupName", typeof(string))
             });
 
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
+
+
+
+
+            //collectMCUTable(selectQuery, table);
+
             searchResultsGrid.DataSource = table;
             searchResultsGrid.DataBind();
-
-            collectMCUTable(selectQuery, table);
-
 
         }
         //Current plan:  Upon page load from URL, initiate query. 
@@ -89,11 +144,15 @@ namespace Agrivolution
             return table;
         }
 
-        protected void searchResultsGrid_SelectedIndexChanged(object sender, EventArgs e)
+        protected void searchResultsGrid_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            if (searchResultsGrid.SelectedIndex >= 0)
+            {
+                Console.Write("Selected: " + searchResultsGrid.SelectedIndex);
+            }
+            searchResultsGrid.PageIndex = e.NewPageIndex;
+            searchResultsGrid.DataBind();
         }
-
 
     }
 }

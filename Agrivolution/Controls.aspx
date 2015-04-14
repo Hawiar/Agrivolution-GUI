@@ -3,31 +3,13 @@
 
     <h2><%: Title %></h2>
 
-    <asp:GridView ID="searchResultsGrid" runat="server" AutoGenerateColumns="false" DataSourceID="DATABASENAME" AllowPaging="true">
+    <asp:GridView runat="server" AutoGenerateColumns="false" ID="searchResultsGrid" AllowPaging="true" PageSize="30" OnPageIndexChanging="searchResultsGrid_PageIndexChanging">
         <Columns>
-            <asp:TemplateField>
-                <ItemTemplate>
-                    <asp:BoundField ID="singleName" HeaderText="MCU" runat="server" Enabled="true" />
-                </ItemTemplate>
-            </asp:TemplateField>
-
-            <asp:TemplateField>
-                <ItemTemplate>
-                    <asp:BoundField ID="facilityName" HeaderText="Facility" runat="server" Enabled="true" />
-                </ItemTemplate>
-            </asp:TemplateField>
-
-            <asp:TemplateField>
-                <ItemTemplate>
-                    <asp:BoundField ID="roomName" runat="server" Enabled="true" />
-                </ItemTemplate>
-            </asp:TemplateField>
-
-            <asp:TemplateField>
-                <ItemTemplate>
-                    <asp:BoundField ID="groupName" runat="server" Enabled="true" />
-                </ItemTemplate>
-            </asp:TemplateField>
+      
+                    <asp:BoundField DataField="singleName" runat="server" HeaderStyle-Width="150px"  HeaderText="MCU" />
+                    <asp:BoundField HeaderStyle-Width="150px" HeaderText="Facility" DataField="facilityName"  runat="server" />
+                    <asp:BoundField DataField="roomName" runat="server" HeaderStyle-Width="150px" HeaderText="Room" />
+                    <asp:BoundField DataField="groupName" runat="server" HeaderStyle-Width="150px" HeaderText="Group" />
         </Columns>
     </asp:GridView>
 </asp:Content>
