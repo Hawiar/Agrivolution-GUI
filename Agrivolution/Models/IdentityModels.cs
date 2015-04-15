@@ -25,6 +25,8 @@ namespace Agrivolution.Models
         {
             return Task.FromResult(GenerateUserIdentity(manager));
         }
+
+        public String Address1 { get; set;}
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

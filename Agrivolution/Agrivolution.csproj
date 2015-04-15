@@ -358,6 +358,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504080448117_InitialCreate.cs" />
+    <Compile Include="Migrations\201504080448117_InitialCreate.Designer.cs">
+      <DependentUpon>201504080448117_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504140442572_UserAddress1.cs" />
+    <Compile Include="Migrations\201504140442572_UserAddress1.Designer.cs">
+      <DependentUpon>201504140442572_UserAddress1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -385,6 +394,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201504080448117_InitialCreate.resx">
+      <DependentUpon>201504080448117_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504140442572_UserAddress1.resx">
+      <DependentUpon>201504140442572_UserAddress1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
