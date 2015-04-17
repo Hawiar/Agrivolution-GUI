@@ -6,6 +6,8 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
+using System.Data.Entity;
+using Agrivolution.Models;
 
 namespace Agrivolution
 {
@@ -16,6 +18,9 @@ namespace Agrivolution
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //Initalize the MCU database
+            Database.SetInitializer(new MCUDatabaseInit());
         }
 
         //Should check if user is logged in, otherwise redirect them to login page
