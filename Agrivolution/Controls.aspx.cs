@@ -12,91 +12,24 @@ namespace Agrivolution
 {
     public partial class MCUSearch : System.Web.UI.Page
     {
+
+        public static string keyBreak;
+        public static string typeBreak;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if (!IsPostBack)
             {
                 //Default Page Title
-                Page.Title = "Controls";
+                Page.Title = "All";
+                keyBreak = null;
+                typeBreak = null;
             }
             else
             {
-                //Dynamic Page Title (Eventually)
-                Page.Title = "Postback'd";
+                //Post-back Specific Stuff
             }
-
-            string selectQuery = "SELECT * FROM ";
-
-            DataTable table = new DataTable();
-            table.Columns.AddRange(new DataColumn[4] 
-            {
-                new DataColumn("singleName", typeof(string)),
-                new DataColumn("facilityName", typeof(string)),
-                new DataColumn("roomName", typeof(string)),
-                new DataColumn("groupName", typeof(string))
-            });
-
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-            table.Rows.Add("Test1", "Test2", "Test3", "Test4");
-
-
-
-
-            //collectMCUTable(selectQuery, table);
-
-            //searchResultsGrid.DataSource = table;
-            //searchResultsGrid.DataBind();
-
         }
         //Current plan:  Upon page load from URL, initiate query. 
         //URL will have search term.  Clicking a link in master.aspx  (ie, Facilities, Groups)
@@ -118,90 +51,108 @@ namespace Agrivolution
         //SqlDataReader keeps the connection to the database open.
         //As such, the data may need to be pushed to a separate container first,
         //with the DataTable filled after the connections are closed.
-        protected DataTable collectMCUTable(string selectQuery, DataTable table)
-        {
-            SqlConnection serverConnection = new SqlConnection("Data Source=SERVERNAME;Initial Catalog=POSSIBLE_SEPARATE_DATABASE_NAME;Persist Security Info=True;user id=USERIDFORDATABASE;pwd=PASSWORD");
-            SqlDataReader reader = null;
-
-            try
-            {
-                serverConnection.Open();
-                SqlCommand executedCommand = new SqlCommand(selectQuery, serverConnection);
-                reader = executedCommand.ExecuteReader();
-            }
-            catch (Exception) 
-            {
-                Console.Write(" (╯°□°）╯︵ ┻━┻) What happened?");
-            }
-            finally
-            {
-                if (reader != null)
-                {
-                    //Use the reader to build the DataTable.
-                    while (reader.Read())
-                    {
-                        table.Load(reader);
-                    }
-                    reader.Close();
-                }
-                //Disconnect from the server
-                if (serverConnection != null)
-                {
-                    serverConnection.Close();
-                }
-            }
-
-            return table;
-        }
-/**
-        protected void searchResultsGrid_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            if (searchResultsGrid.SelectedIndex >= 0)
-            {
-                Console.Write("Selected: " + searchResultsGrid.SelectedIndex);
-            }
-            searchResultsGrid.PageIndex = e.NewPageIndex;
-            searchResultsGrid.DataBind();
-        }
-*/
-        protected void searchResultsGrid_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         protected void mcuidClick(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Click works");
+            Button btn = (Button)sender;
             foreach (GridViewRow rw in resultsGrid.Rows)
             {
-                if(rw.Cells[0].Text == "2") 
+                if (((Button)rw.FindControl("MCUID")).Text == btn.Text) 
                 {
+                    //Keep or mark matching items as visible
                     rw.Visible = true;
-                    System.Diagnostics.Debug.WriteLine("FOUND MATCH");
-
                 }
                 else
                 {
+                    //Hide unrelated objects
                     rw.Visible = false;
-                    System.Diagnostics.Debug.WriteLine("NO MATCH, " + rw.Cells[0].Text);
-
                 }
             }
+            Page.Title = "MCU: " + btn.Text;
+            keyBreak = btn.Text;
+            typeBreak = "MCUID";
         }
 
         protected void roomClick(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Click works");
+            Button btn = (Button)sender;
+            foreach (GridViewRow rw in resultsGrid.Rows)
+            {
+                if (((Button)rw.FindControl("Room")).Text == btn.Text)
+                {
+                    //Keep or mark matching items as visible
+                    rw.Visible = true;
+                }
+                else
+                {
+                    //Hide unrelated objects
+                    rw.Visible = false;
+                }
+            }
+            Page.Title = "Room: " + btn.Text;
+            keyBreak = btn.Text;
+            typeBreak = "Room";
         }
 
         protected void facilityClick(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Click works");
+            Button btn = (Button)sender;
+            foreach (GridViewRow rw in resultsGrid.Rows)
+            {
+                if (((Button)rw.FindControl("Facility")).Text == btn.Text)
+                {
+                    //Keep or mark matching items as visible
+                    rw.Visible = true;
+                }
+                else
+                {
+                    //Hide unrelated objects
+                    rw.Visible = false;
+                }
+            }
+            Page.Title = "Facility: " + btn.Text;
+            keyBreak = btn.Text;
+            typeBreak = "Facility";
         }
 
         protected void groupClick(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Click works");
+            Button btn = (Button)sender;
+            foreach (GridViewRow rw in resultsGrid.Rows)
+            {
+                if (((Button)rw.FindControl("Group")).Text == btn.Text)
+                {
+                    //Keep or mark matching items as visible
+                    rw.Visible = true;
+                }
+                else
+                {
+                    //Hide unrelated objects
+                    rw.Visible = false;
+                }
+            }
+            Page.Title = "Group: " + btn.Text;
+            keyBreak = btn.Text;
+            typeBreak = "Group";
+        }
+
+        protected void resetVisibility(object sender, EventArgs e)
+        {
+            foreach (GridViewRow rw in resultsGrid.Rows)
+            {
+                rw.Visible = true; 
+            }
+            Page.Title = "All";
+            keyBreak = null;
+            typeBreak = null;
+        }
+
+        protected void editRemaining(object sender, EventArgs e)
+        {
+            if (typeBreak != null)
+            {
+                Response.Redirect("editpage.aspx?type=" + typeBreak + "&key=" + keyBreak);
+            }
         }
     }
 }

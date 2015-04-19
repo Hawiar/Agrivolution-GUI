@@ -1,13 +1,10 @@
-﻿
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Controls.aspx.cs" Inherits="Agrivolution.MCUSearch" %>
 
-
-
-<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Controls.aspx.cs" Inherits="Agrivolution.MCUSearch" 
-    %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server" >
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2><%: "Controls: " + Page.Title%></h2>
+    <asp:Button ID="resetButton" runat="server" Text="Reset List" OnClick="resetVisibility" UseSubmitBehavior="false" />
+    <asp:Button ID="goToEditButton" runat="server" Text="Edit MCUs" OnClick="editRemaining" UseSubmitBehavior="false" />
 
     <asp:GridView runat="server" AutoGenerateColumns="False" ID="resultsGrid" AllowPaging="True" AllowSorting="True" PageSize="20" DataKeyNames="MCUID" DataSourceID="SqlDataSource1">
         <Columns>
@@ -25,7 +22,7 @@
 
             <asp:TemplateField HeaderText="Facility" SortExpression="Facility">
                 <ItemTemplate>
-                    <asp:Button DataField="Facility" ID="Facility" runat="server" Text='<%#Eval("Facility") %>' OnClick="roomClick" UseSubmitBehavior="false" />
+                    <asp:Button DataField="Facility" ID="Facility" runat="server" Text='<%#Eval("Facility") %>' OnClick="facilityClick" UseSubmitBehavior="false" />
                 </ItemTemplate>
             </asp:TemplateField>
 
