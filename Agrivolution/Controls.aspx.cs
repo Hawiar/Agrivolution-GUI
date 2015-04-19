@@ -153,6 +153,10 @@ namespace Agrivolution
             {
                 Response.Redirect("editpage.aspx?type=" + typeBreak + "&key=" + keyBreak);
             }
+            else
+            {
+                Page.Title = "All";
+            }
         }
     }
 }

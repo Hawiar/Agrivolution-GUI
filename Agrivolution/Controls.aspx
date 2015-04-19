@@ -2,6 +2,22 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+    <style type="text/css">
+        input[type="button"], input[type="button"]:focus, input[type="button"]:active,
+        button, button:focus, button:active {
+            margin: 0;
+            padding: 0;
+            background: none;
+            border: none;
+            display: inline;
+            outline: none;
+            outline-offset: 0;
+            color: blue;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+
     <h2><%: "Controls: " + Page.Title%></h2>
     <asp:Button ID="resetButton" runat="server" Text="Reset List" OnClick="resetVisibility" UseSubmitBehavior="false" />
     <asp:Button ID="goToEditButton" runat="server" Text="Edit MCUs" OnClick="editRemaining" UseSubmitBehavior="false" />
