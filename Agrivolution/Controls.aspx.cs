@@ -12,8 +12,9 @@ namespace Agrivolution
 {
     public partial class MCUSearch : System.Web.UI.Page
     {
-
+        //Key used as unique variable for handling on further pages
         public static string keyBreak;
+        //The type of the unique variable for easy handling.
         public static string typeBreak;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -31,33 +32,17 @@ namespace Agrivolution
                 //Post-back Specific Stuff
             }
         }
-        //Current plan:  Upon page load from URL, initiate query. 
-        //URL will have search term.  Clicking a link in master.aspx  (ie, Facilities, Groups)
-        //will return a search result based on that.  Clicking on a Facility or Room within the page
-        //triggers a new search to execute to display further information.  
-        //Need to also include a way to break from the search page and return a list
-        //That list will contain all of the MCU information.
-        //The page that is broken to will perform edits on that specific information.  May include a flag that 
-        //Mentions if the list contains a single MCU, a group, a Facility, or a Room.
 
-
-        //Pulls in a query request (either group/facility/room name)
-        //Returns a corresponding DataTable.
-        //
-        //DataTable will be used in two ways: Passed to the GridView,
-        //And can be passed if the user submits that they wish to perform changes
-        //on that specific collection of MCUs.
-        //This current implementation may need to be examined later on.
-        //SqlDataReader keeps the connection to the database open.
-        //As such, the data may need to be pushed to a separate container first,
-        //with the DataTable filled after the connections are closed.
-
+        /*
+         * On Click of an MCUID, simplify the total list of MCUs being displayed to just itself.
+         * Sets page title and key/type for breaking out of the page.
+         * */
         protected void mcuidClick(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
             foreach (GridViewRow rw in resultsGrid.Rows)
             {
-                if (((Button)rw.FindControl("MCUID")).Text == btn.Text) 
+                if (((Button)rw.FindControl("MCUID")).Text == btn.Text)
                 {
                     //Keep or mark matching items as visible
                     rw.Visible = true;
@@ -73,6 +58,11 @@ namespace Agrivolution
             typeBreak = "MCUID";
         }
 
+
+        /*
+         * On Click of a Room, simplify the total list of MCUs being displayed to just those within the room.
+        * Sets page title and key/type for breaking out of the page.
+        * */
         protected void roomClick(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -94,6 +84,10 @@ namespace Agrivolution
             typeBreak = "Room";
         }
 
+        /*
+        * On Click of a Facility, simplify the total list of MCUs being displayed to just those within the facility.
+         * Sets page title and key/type for breaking out of the page.
+         * */
         protected void facilityClick(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -115,6 +109,10 @@ namespace Agrivolution
             typeBreak = "Facility";
         }
 
+        /*
+        * On Click of a Group, simplify the total list of MCUs being displayed to just those within the group.
+        * Sets page title and key/type for breaking out of the page.
+        * */
         protected void groupClick(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -136,17 +134,32 @@ namespace Agrivolution
             typeBreak = "Group";
         }
 
+        /*
+         * Resets the Visibility status of every MCU to true to "reset" the list.
+         * Reset the page title and also clear the key/type used to break from the page
+         * */
         protected void resetVisibility(object sender, EventArgs e)
         {
             foreach (GridViewRow rw in resultsGrid.Rows)
             {
-                rw.Visible = true; 
+                rw.Visible = true;
             }
             Page.Title = "All";
             keyBreak = null;
             typeBreak = null;
         }
 
+        /*
+         * Evaluate the type to ensure that one exists.  
+         * Key is not currently checked.  It is technically possible, because of this, to edit
+         * all MCUs that are not part of a group.
+         * 
+         * This functionality will be reevaluated later in the design to judge its usefulness.
+         * 
+         * If there is no type set, Postback will reset the page title. Ensure that it maintains uniformity.
+         * We can also assume at this point that no MCU has been selected, so the list should not contain any
+         * hidden MCUs.
+         * */
         protected void editRemaining(object sender, EventArgs e)
         {
             if (typeBreak != null)
