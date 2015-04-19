@@ -14,8 +14,18 @@ namespace Agrivolution
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Generates a dynamic page title
-            this.Title = "Placeholder";
+
+            if (!IsPostBack)
+            {
+                //Default Page Title
+                Page.Title = "Controls";
+            }
+            else
+            {
+                //Dynamic Page Title (Eventually)
+                Page.Title = "Postback'd";
+            }
+
             string selectQuery = "SELECT * FROM ";
 
             DataTable table = new DataTable();
@@ -84,8 +94,8 @@ namespace Agrivolution
 
             //collectMCUTable(selectQuery, table);
 
-            searchResultsGrid.DataSource = table;
-            searchResultsGrid.DataBind();
+            //searchResultsGrid.DataSource = table;
+            //searchResultsGrid.DataBind();
 
         }
         //Current plan:  Upon page load from URL, initiate query. 
@@ -143,7 +153,7 @@ namespace Agrivolution
 
             return table;
         }
-
+/**
         protected void searchResultsGrid_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             if (searchResultsGrid.SelectedIndex >= 0)
@@ -153,6 +163,45 @@ namespace Agrivolution
             searchResultsGrid.PageIndex = e.NewPageIndex;
             searchResultsGrid.DataBind();
         }
+*/
+        protected void searchResultsGrid_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        protected void mcuidClick(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Click works");
+            foreach (GridViewRow rw in resultsGrid.Rows)
+            {
+                if(rw.Cells[0].Text == "2") 
+                {
+                    rw.Visible = true;
+                    System.Diagnostics.Debug.WriteLine("FOUND MATCH");
+
+                }
+                else
+                {
+                    rw.Visible = false;
+                    System.Diagnostics.Debug.WriteLine("NO MATCH, " + rw.Cells[0].Text);
+
+                }
+            }
+        }
+
+        protected void roomClick(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Click works");
+        }
+
+        protected void facilityClick(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Click works");
+        }
+
+        protected void groupClick(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Click works");
+        }
     }
 }

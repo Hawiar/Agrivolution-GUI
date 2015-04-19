@@ -13,12 +13,21 @@ namespace Agrivolution {
     public partial class MCUSearch {
         
         /// <summary>
-        /// searchResultsGrid control.
+        /// resultsGrid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView searchResultsGrid;
+        protected global::System.Web.UI.WebControls.GridView resultsGrid;
+        
+        /// <summary>
+        /// SqlDataSource1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
     }
 }
