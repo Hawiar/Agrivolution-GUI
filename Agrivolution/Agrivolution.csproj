@@ -173,6 +173,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Controls.aspx" />
+    <Content Include="Grouping\GroupSearch.aspx" />
+    <Content Include="Grouping\NewGroup.aspx" />
+    <Content Include="Grouping\SingleGroup.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -366,6 +369,27 @@
     <Compile Include="Controls.aspx.designer.cs">
       <DependentUpon>Controls.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Grouping\GroupSearch.aspx.cs">
+      <DependentUpon>GroupSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Grouping\GroupSearch.aspx.designer.cs">
+      <DependentUpon>GroupSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Grouping\NewGroup.aspx.cs">
+      <DependentUpon>NewGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Grouping\NewGroup.aspx.designer.cs">
+      <DependentUpon>NewGroup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Grouping\SingleGroup.aspx.cs">
+      <DependentUpon>SingleGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Grouping\SingleGroup.aspx.designer.cs">
+      <DependentUpon>SingleGroup.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -393,7 +417,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Grouping\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

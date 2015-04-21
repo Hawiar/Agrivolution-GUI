@@ -17,7 +17,7 @@ namespace Agrivolution.Grouping
         protected void btnSaveGroup_Click(object sender, EventArgs e)
         {
             int bit;
-            if(ddlFan.Text.Equals("1"))
+            if (ddlFan.Text.Equals("1"))
             {
                 bit = 1;
             }
@@ -27,7 +27,7 @@ namespace Agrivolution.Grouping
             }
             SqlConnection connect = new SqlConnection("Data Source=Mateo94\\sqlexpress;Initial Catalog=aspnet-Agrivolution-20150404115207;Integrated Security=True");
             {
-                SqlCommand com = new SqlCommand("Insert into GroupsMasterList(GroupName, Fan, LightTimer) Values('@GroupName', @Fan, @LightTimer)", connect);
+                SqlCommand com = new SqlCommand("Insert into GroupsMasterList(GroupName, Fan, LightTimer) Values(@GroupName, @Fan, @LightTimer)", connect);
                 com.Parameters.AddWithValue("@GroupName", txtGroupName.Text);
                 com.Parameters.AddWithValue("@Fan", bit);
                 com.Parameters.AddWithValue("@LightTimer", txtLightTimer.Text);

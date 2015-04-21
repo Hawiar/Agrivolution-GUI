@@ -77,17 +77,17 @@ namespace Agrivolution.Grouping
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
             String GroupName = Request.QueryString["GroupName"];
-            for(int i = 0; i<GridView1.Rows.Count; i++)
+            for (int i = 0; i < GridView1.Rows.Count; i++)
             {
                 Label lbHolder = (Label)GridView1.Rows[i].FindControl("lblMcuId");
                 CheckBox chk = (CheckBox)GridView1.Rows[i].FindControl("CheckBox1");
-                if(chk.Checked == true)
+                if (chk.Checked == true)
                 {
                     SqlConnection connect = new SqlConnection("Data Source=Mateo94\\sqlexpress;Initial Catalog=aspnet-Agrivolution-20150404115207;Integrated Security=True");
                     {
