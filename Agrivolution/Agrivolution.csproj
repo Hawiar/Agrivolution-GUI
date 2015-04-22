@@ -362,6 +362,33 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+    <Compile Include="Migrations\201504080448117_InitialCreate.cs" />
+    <Compile Include="Migrations\201504080448117_InitialCreate.Designer.cs">
+      <DependentUpon>201504080448117_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504140442572_UserAddress1.cs" />
+    <Compile Include="Migrations\201504140442572_UserAddress1.Designer.cs">
+      <DependentUpon>201504140442572_UserAddress1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504172148584_Address2.cs" />
+    <Compile Include="Migrations\201504172148584_Address2.Designer.cs">
+      <DependentUpon>201504172148584_Address2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504172154146_UserFirstName.cs" />
+    <Compile Include="Migrations\201504172154146_UserFirstName.Designer.cs">
+      <DependentUpon>201504172154146_UserFirstName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504172155595_UserLastName.cs" />
+    <Compile Include="Migrations\201504172155595_UserLastName.Designer.cs">
+      <DependentUpon>201504172155595_UserLastName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504172157002_UserPhone.cs" />
+    <Compile Include="Migrations\201504172157002_UserPhone.Designer.cs">
+      <DependentUpon>201504172157002_UserPhone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+=======
     <Compile Include="Controls.aspx.cs">
       <DependentUpon>Controls.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -390,6 +417,7 @@
     <Compile Include="Grouping\SingleGroup.aspx.designer.cs">
       <DependentUpon>SingleGroup.aspx</DependentUpon>
     </Compile>
+>>>>>>> 5bdc0cc75369fd895aaaef26fa5c5a9a987269de
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -417,6 +445,26 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201504080448117_InitialCreate.resx">
+      <DependentUpon>201504080448117_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504140442572_UserAddress1.resx">
+      <DependentUpon>201504140442572_UserAddress1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504172148584_Address2.resx">
+      <DependentUpon>201504172148584_Address2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504172154146_UserFirstName.resx">
+      <DependentUpon>201504172154146_UserFirstName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504172155595_UserLastName.resx">
+      <DependentUpon>201504172155595_UserLastName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504172157002_UserPhone.resx">
+      <DependentUpon>201504172157002_UserPhone.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
