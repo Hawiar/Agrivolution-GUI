@@ -15,7 +15,8 @@ namespace Agrivolution.Account
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-            var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text };
+            var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text, Address1 = Address1.Text, Address2 = Address2.Text, 
+                FirstName = FirstName.Text, LastName = LastName.Text, Phone = Phone.Text };
             IdentityResult result = manager.Create(user, Password.Text);
             if (result.Succeeded)
             {
