@@ -362,7 +362,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="Migrations\201504080448117_InitialCreate.cs" />
     <Compile Include="Migrations\201504080448117_InitialCreate.Designer.cs">
       <DependentUpon>201504080448117_InitialCreate.cs</DependentUpon>
@@ -388,7 +387,6 @@
       <DependentUpon>201504172157002_UserPhone.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-=======
     <Compile Include="Controls.aspx.cs">
       <DependentUpon>Controls.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -417,7 +415,6 @@
     <Compile Include="Grouping\SingleGroup.aspx.designer.cs">
       <DependentUpon>SingleGroup.aspx</DependentUpon>
     </Compile>
->>>>>>> 5bdc0cc75369fd895aaaef26fa5c5a9a987269de
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
