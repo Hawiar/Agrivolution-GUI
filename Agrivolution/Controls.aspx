@@ -26,19 +26,19 @@
         <Columns>
             <asp:TemplateField HeaderText="MCUID" SortExpression="MCUID">
                 <ItemTemplate>
-                    <asp:Button DataField="MCUID" ID="MCUID" runat="server" Text='<%# Eval("MCUID") %>' OnClick="mcuidClick" UseSubmitBehavior="false" />
+                    <asp:Button ID="MCUID" runat="server" Text='<%# Eval("MCUID") %>' OnClick="mcuidClick" UseSubmitBehavior="false" />
                 </ItemTemplate>
             </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Room" SortExpression="Room">
                 <ItemTemplate>
-                    <asp:Button DataField="Room" ID="Room" runat="server" Text='<%#Eval("Room") %>' OnClick="roomClick" UseSubmitBehavior="false" />
+                    <asp:Button ID="Room" runat="server" Text='<%#Eval("Room") %>' OnClick="roomClick" UseSubmitBehavior="false" />
                 </ItemTemplate>
             </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Facility" SortExpression="Facility">
                 <ItemTemplate>
-                    <asp:Button DataField="Facility" ID="Facility" runat="server" Text='<%#Eval("Facility") %>' OnClick="facilityClick" UseSubmitBehavior="false" />
+                    <asp:Button ID="Facility" runat="server" Text='<%#Eval("Facility") %>' OnClick="facilityClick" UseSubmitBehavior="false" />
                 </ItemTemplate>
             </asp:TemplateField>
 
@@ -51,14 +51,22 @@
 
             <asp:TemplateField HeaderText="Group" SortExpression="Group">
                 <ItemTemplate>
-                    <asp:Button DataField="Group" ID="Group" runat="server" Text='<%#Eval("Group") %>' OnClick="groupClick" UseSubmitBehavior="false" />
+                    <asp:Button ID="Group" runat="server" Text='<%#Eval("Group") %>' OnClick="groupClick" UseSubmitBehavior="false" />
                 </ItemTemplate>
             </asp:TemplateField>
 
         </Columns>
 
     </asp:GridView>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [MCUID], [Room], [Facility], [Group], [Status] FROM [MCUList]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT * FROM [MCUList]"></asp:SqlDataSource>
 
+    <asp:GridView ID="StatsBlock" runat="server" AutoGenerateColumns="False" AllowPaging="False" AllowSorting="False" DataSourceID="SqlDataSource1">
+        <Columns>
+            <asp:BoundField DataField="Humidity" runat="server" HeaderText="Humidity" />
+            <asp:BoundField DataField="CO2Level" runat="server" HeaderText="CO2 Humidity" />
+            <asp:BoundField DataField="LightStatus" runat="server" HeaderText="Light Status" />
+            <asp:BoundField DataField="CropType" runat="server" HeaderText="Crop Type" />
+        </Columns>
+    </asp:GridView>
 
 </asp:Content>

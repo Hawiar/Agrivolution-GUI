@@ -16,6 +16,8 @@ namespace Agrivolution
         public static string keyBreak;
         //The type of the unique variable for easy handling.
         public static string typeBreak;
+        //Humidity of current item
+        public static Label humidity;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,11 +32,22 @@ namespace Agrivolution
             else
             {
                 //Post-back Specific Stuff
-            }
-        }
+                DataTable table = new DataTable();
+                table.Columns.AddRange(new DataColumn[4] 
+            {
+                new DataColumn("Humidity", typeof(string)),
+                new DataColumn("CO2Level", typeof(string)),
+                new DataColumn("LightStatus", typeof(string)),
+                new DataColumn("CropStatus", typeof(string))
+            });
+
+          //  searchResultsGrid.DataSource = table;
+         //   searchResultsGrid.DataBind();
+           }
+       }
 
         /*
-         * On Click of an MCUID, simplify the total list of MCUs being displayed to just itself.
+        * On Click of an MCUID, simplify the total list of MCUs being displayed to just itself.
          * Sets page title and key/type for breaking out of the page.
          * */
         protected void mcuidClick(object sender, EventArgs e)
@@ -56,8 +69,10 @@ namespace Agrivolution
             Page.Title = "MCU: " + btn.Text;
             keyBreak = btn.Text;
             typeBreak = "MCUID";
+            humidity = ((Label)StatsBlock.FindControl("Humidity"));
+            humidity.Text = "Test??";
         }
-
+        
 
         /*
          * On Click of a Room, simplify the total list of MCUs being displayed to just those within the room.
