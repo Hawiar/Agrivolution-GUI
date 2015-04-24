@@ -13,31 +13,31 @@ namespace Agrivolution.Grouping {
     public partial class WebForm1 {
         
         /// <summary>
-        /// GridView1 control.
+        /// GridAddMcu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView GridAddMcu;
         
         /// <summary>
-        /// SqlDataSource1 control.
+        /// SqlDataGridAddMcu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataGridAddMcu;
         
         /// <summary>
-        /// Button1 control.
+        /// BtnAddMcu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button BtnAddMcu;
         
         /// <summary>
         /// lblGroupName control.
@@ -103,22 +103,22 @@ namespace Agrivolution.Grouping {
         protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// GridView2 control.
+        /// GridRemoveMcu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView2;
+        protected global::System.Web.UI.WebControls.GridView GridRemoveMcu;
         
         /// <summary>
-        /// SqlDataSource2 control.
+        /// SqlDataGridRemoveMcu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource2;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataGridRemoveMcu;
         
         /// <summary>
         /// btnRemove control.

@@ -15,6 +15,7 @@ namespace Agrivolution.Grouping
     {
         String connString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
+        //Will update comments on this section when i refactor post back
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -51,24 +52,17 @@ namespace Agrivolution.Grouping
             }
         }
 
+        //save button click event that pulls the values from the html controls from the user and updates the relevant database columns
         protected void btnSave_Click(object sender, EventArgs e)
         {
             String GroupName = Request.QueryString["GroupName"];
-            int bit;
-            if (ddlFan.Text.Equals("1"))
-            {
-                bit = 1;
-            }
-            else
-            {
-                bit = 0;
-            }
+
             SqlConnection connect = new SqlConnection(connString);
             {
                 connect.Open();
                 SqlCommand com = new SqlCommand("update GroupsMasterList set GroupName=@GroupName, Fan=@Fan, LightTimer=@LightTimer where GroupName=@initializerGroupName", connect);
                 com.Parameters.AddWithValue("@GroupName", txtGroupName.Text);
-                com.Parameters.AddWithValue("@Fan", bit);
+                com.Parameters.AddWithValue("@Fan", Convert.ToInt32(ddlFan.Text));
                 com.Parameters.AddWithValue("@LightTimer", txtLightTimer.Text);
                 com.Parameters.AddWithValue("@initializerGroupName", GroupName);
                 com.ExecuteNonQuery();
@@ -77,18 +71,17 @@ namespace Agrivolution.Grouping
             Response.Redirect("~/Grouping/SingleGroup.aspx?GroupName=" + txtGroupName.Text);
         }
 
-        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void Button1_Click(object sender, EventArgs e)
+        //Add Mcu button click event that verifys a row(MCU) check box is selected and if so updates the MCU table with the current group name.
+        protected void BtnAddMcu_Click(object sender, EventArgs e)
         {
             String GroupName = Request.QueryString["GroupName"];
-            for (int i = 0; i < GridView1.Rows.Count; i++)
+            //Loops through each row in the database to verify if check box has been selected.
+            for (int i = 0; i < GridAddMcu.Rows.Count; i++)
             {
-                Label lbHolder = (Label)GridView1.Rows[i].FindControl("lblMcuId");
-                CheckBox chk = (CheckBox)GridView1.Rows[i].FindControl("CheckBox1");
+                //temp label and check box to be able to access values for sql params
+                Label lbHolder = (Label)GridAddMcu.Rows[i].FindControl("lblMcuId");
+                CheckBox chk = (CheckBox)GridAddMcu.Rows[i].FindControl("ChkAdd");
+
                 if (chk.Checked == true)
                 {
                     SqlConnection connect = new SqlConnection(connString);
@@ -105,18 +98,17 @@ namespace Agrivolution.Grouping
             Response.Redirect("~/Grouping/SingleGroup.aspx?GroupName=" + GroupName);
         }
 
-        protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        //Remove Mcu button click event that verifys a row(MCU) check box is selected and if so updates the MCU table with a null value for the group value.
         protected void btnRemove_Click(object sender, EventArgs e)
         {
             String GroupName = Request.QueryString["GroupName"];
-            for (int i = 0; i < GridView2.Rows.Count; i++)
+
+            //Loops through each row in the database to verify if check box has been selected.
+            for (int i = 0; i < GridRemoveMcu.Rows.Count; i++)
             {
-                Label lbHolder = (Label)GridView2.Rows[i].FindControl("lblMCUId2");
-                CheckBox chk = (CheckBox)GridView2.Rows[i].FindControl("ChkRemove");
+                //temp label and check box to be able to access values for sql params
+                Label lbHolder = (Label)GridRemoveMcu.Rows[i].FindControl("lblMCUId2");
+                CheckBox chk = (CheckBox)GridRemoveMcu.Rows[i].FindControl("ChkRemove");
                 if (chk.Checked == true)
                 {
                     SqlConnection connect = new SqlConnection(connString);
