@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NewGroup.aspx.cs" Inherits="Agrivolution.Grouping.WebForm2" %>
+
 <asp:Content ID="ContentMain" ContentPlaceHolderID="MainContent" runat="server">
     <div>
-        <p>
-        </p>
+        <br>
         <p>
             <asp:Label ID="lblGroupName" runat="server" Text="Group Name: "></asp:Label>
             <asp:TextBox ID="txtGroupName" runat="server"></asp:TextBox>

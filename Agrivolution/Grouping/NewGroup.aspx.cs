@@ -10,21 +10,11 @@ namespace Agrivolution.Grouping
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-        }
-
+        //Button click event that takes user inputs from html controls and passes them as parameters to a database using a secure connection string. 
         protected void btnSaveGroup_Click(object sender, EventArgs a)
         {
-            int bit;
-            if (ddlFan.Text.Equals("1"))
-            {
-                bit = 1;
-            }
-            else
-            {
-                bit = 0;
-            }
+            //int bit = Convert.ToInt32(ddlFan.Text);
+            //Try catch statement that sets up a SQL connector and pulls a SQL connection string from the web.config file. Uses Parameters to prevent sql injection attacks.
             try
             {
                 String connString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
@@ -32,7 +22,7 @@ namespace Agrivolution.Grouping
                 {
                     SqlCommand com = new SqlCommand("Insert into GroupsMasterList(GroupName, Fan, LightTimer) Values(@GroupName, @Fan, @LightTimer)", connect);
                     com.Parameters.AddWithValue("@GroupName", txtGroupName.Text);
-                    com.Parameters.AddWithValue("@Fan", bit);
+                    com.Parameters.AddWithValue("@Fan", Convert.ToInt32(ddlFan.Text));
                     com.Parameters.AddWithValue("@LightTimer", txtLightTimer.Text);
 
                     connect.Open();
@@ -44,6 +34,7 @@ namespace Agrivolution.Grouping
             { 
                 Console.Write(e.ToString());
             }
+            //Redirects to a groups single page passing a query string of the Groups name.
             Response.Redirect("~/Grouping/SingleGroup.aspx?GroupName=" + txtGroupName.Text);
         }
     }
