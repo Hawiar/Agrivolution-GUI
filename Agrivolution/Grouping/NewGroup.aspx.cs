@@ -14,7 +14,7 @@ namespace Agrivolution.Grouping
         {
         }
 
-        protected void btnSaveGroup_Click(object sender, EventArgs e)
+        protected void btnSaveGroup_Click(object sender, EventArgs a)
         {
             int bit;
             if (ddlFan.Text.Equals("1"))
@@ -25,17 +25,24 @@ namespace Agrivolution.Grouping
             {
                 bit = 0;
             }
-            String connString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            SqlConnection connect = new SqlConnection(connString);
+            try
             {
-                SqlCommand com = new SqlCommand("Insert into GroupsMasterList(GroupName, Fan, LightTimer) Values(@GroupName, @Fan, @LightTimer)", connect);
-                com.Parameters.AddWithValue("@GroupName", txtGroupName.Text);
-                com.Parameters.AddWithValue("@Fan", bit);
-                com.Parameters.AddWithValue("@LightTimer", txtLightTimer.Text);
+                String connString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+                SqlConnection connect = new SqlConnection(connString);
+                {
+                    SqlCommand com = new SqlCommand("Insert into GroupsMasterList(GroupName, Fan, LightTimer) Values(@GroupName, @Fan, @LightTimer)", connect);
+                    com.Parameters.AddWithValue("@GroupName", txtGroupName.Text);
+                    com.Parameters.AddWithValue("@Fan", bit);
+                    com.Parameters.AddWithValue("@LightTimer", txtLightTimer.Text);
 
-                connect.Open();
-                com.ExecuteNonQuery();
-                connect.Close();
+                    connect.Open();
+                    com.ExecuteNonQuery();
+                    connect.Close();
+                }
+            }
+            catch(SqlException e)
+            { 
+                Console.Write(e.ToString());
             }
             Response.Redirect("~/Grouping/SingleGroup.aspx?GroupName=" + txtGroupName.Text);
         }

@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NewGroup.aspx.cs" Inherits="Agrivolution.Grouping.WebForm2" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="ContentMain" ContentPlaceHolderID="MainContent" runat="server">
     <div>
         <p>
         </p>
