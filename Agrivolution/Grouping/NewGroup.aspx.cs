@@ -25,7 +25,8 @@ namespace Agrivolution.Grouping
             {
                 bit = 0;
             }
-            SqlConnection connect = new SqlConnection("Data Source=Mateo94\\sqlexpress;Initial Catalog=aspnet-Agrivolution-20150404115207;Integrated Security=True");
+            String connString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection connect = new SqlConnection(connString);
             {
                 SqlCommand com = new SqlCommand("Insert into GroupsMasterList(GroupName, Fan, LightTimer) Values(@GroupName, @Fan, @LightTimer)", connect);
                 com.Parameters.AddWithValue("@GroupName", txtGroupName.Text);

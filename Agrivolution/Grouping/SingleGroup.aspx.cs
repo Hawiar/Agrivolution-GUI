@@ -13,6 +13,8 @@ namespace Agrivolution.Grouping
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        String connString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -24,7 +26,7 @@ namespace Agrivolution.Grouping
             {
                 String GroupName = Request.QueryString["GroupName"];
 
-                SqlConnection connect = new SqlConnection("Data Source=Mateo94\\sqlexpress;Initial Catalog=aspnet-Agrivolution-20150404115207;Integrated Security=True");
+                SqlConnection connect = new SqlConnection(connString);
                 {
                     SqlCommand com = new SqlCommand("select * from GroupsMasterList where GroupName='" + GroupName + "'", connect);
                     connect.Open();
@@ -61,7 +63,7 @@ namespace Agrivolution.Grouping
             {
                 bit = 0;
             }
-            SqlConnection connect = new SqlConnection("Data Source=Mateo94\\sqlexpress;Initial Catalog=aspnet-Agrivolution-20150404115207;Integrated Security=True");
+            SqlConnection connect = new SqlConnection(connString);
             {
                 connect.Open();
                 SqlCommand com = new SqlCommand("update GroupsMasterList set GroupName=@GroupName, Fan=@Fan, LightTimer=@LightTimer where GroupName=@initializerGroupName", connect);
@@ -89,7 +91,7 @@ namespace Agrivolution.Grouping
                 CheckBox chk = (CheckBox)GridView1.Rows[i].FindControl("CheckBox1");
                 if (chk.Checked == true)
                 {
-                    SqlConnection connect = new SqlConnection("Data Source=Mateo94\\sqlexpress;Initial Catalog=aspnet-Agrivolution-20150404115207;Integrated Security=True");
+                    SqlConnection connect = new SqlConnection(connString);
                     {
                         connect.Open();
                         SqlCommand com = new SqlCommand("update MCUList set [Group]=@GroupName where MCUID=@currentMCUID", connect);
@@ -117,7 +119,7 @@ namespace Agrivolution.Grouping
                 CheckBox chk = (CheckBox)GridView2.Rows[i].FindControl("ChkRemove");
                 if (chk.Checked == true)
                 {
-                    SqlConnection connect = new SqlConnection("Data Source=Mateo94\\sqlexpress;Initial Catalog=aspnet-Agrivolution-20150404115207;Integrated Security=True");
+                    SqlConnection connect = new SqlConnection(connString);
                     {
                         connect.Open();
                         SqlCommand com = new SqlCommand("update MCUList set [Group]=@GroupName where MCUID=@currentMCUID", connect);
