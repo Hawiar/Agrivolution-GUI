@@ -16,7 +16,7 @@ namespace Agrivolution.Grouping
         String connString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
         //Will update comments on this section when i refactor post back
-        protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs a)
         {
 
             if (IsPostBack)
@@ -27,52 +27,68 @@ namespace Agrivolution.Grouping
             {
                 String GroupName = Request.QueryString["GroupName"];
 
-                SqlConnection connect = new SqlConnection(connString);
+                try
                 {
-                    SqlCommand com = new SqlCommand("select * from GroupsMasterList where GroupName='" + GroupName + "'", connect);
-                    connect.Open();
-                    SqlDataReader read = com.ExecuteReader();
-                    if (read.Read())
+                    SqlConnection connect = new SqlConnection(connString);
                     {
-                        txtGroupName.Text = read["GroupName"].ToString();
-                        string boool = read["Fan"].ToString();
-                        if (boool.Equals("True"))
+                        SqlCommand com = new SqlCommand("select * from GroupsMasterList where GroupName='" + GroupName + "'", connect);
+                        connect.Open();
+                        SqlDataReader read = com.ExecuteReader();
+                        if (read.Read())
                         {
-                            ddlFan.Text = "1";
+                            txtGroupName.Text = read["GroupName"].ToString();
+                            string boool = read["Fan"].ToString();
+                            if (boool.Equals("True"))
+                            {
+                                ddlFan.Text = "1";
+                            }
+                            else
+                            {
+                                ddlFan.Text = "0";
+                            }
+                            txtLightTimer.Text = read["LightTimer"].ToString();
+                            read.Close();
+                            connect.Close();
                         }
-                        else
-                        {
-                            ddlFan.Text = "0";
-                        }
-                        txtLightTimer.Text = read["LightTimer"].ToString();
-                        read.Close();
-                        connect.Close();
                     }
+                }
+                catch (SqlException e)
+                {
+                    
+                    Console.Write(e.ToString());
                 }
             }
         }
 
         //save button click event that pulls the values from the html controls from the user and updates the relevant database columns
-        protected void btnSave_Click(object sender, EventArgs e)
+        protected void btnSave_Click(object sender, EventArgs a)
         {
             String GroupName = Request.QueryString["GroupName"];
 
-            SqlConnection connect = new SqlConnection(connString);
+            try
             {
-                connect.Open();
-                SqlCommand com = new SqlCommand("update GroupsMasterList set GroupName=@GroupName, Fan=@Fan, LightTimer=@LightTimer where GroupName=@initializerGroupName", connect);
-                com.Parameters.AddWithValue("@GroupName", txtGroupName.Text);
-                com.Parameters.AddWithValue("@Fan", Convert.ToInt32(ddlFan.Text));
-                com.Parameters.AddWithValue("@LightTimer", txtLightTimer.Text);
-                com.Parameters.AddWithValue("@initializerGroupName", GroupName);
-                com.ExecuteNonQuery();
-                connect.Close();
+                SqlConnection connect = new SqlConnection(connString);
+                {
+                    connect.Open();
+                    SqlCommand com = new SqlCommand("update GroupsMasterList set GroupName=@GroupName, Fan=@Fan, LightTimer=@LightTimer where GroupName=@initializerGroupName", connect);
+                    com.Parameters.AddWithValue("@GroupName", txtGroupName.Text);
+                    com.Parameters.AddWithValue("@Fan", Convert.ToInt32(ddlFan.Text));
+                    com.Parameters.AddWithValue("@LightTimer", txtLightTimer.Text);
+                    com.Parameters.AddWithValue("@initializerGroupName", GroupName);
+                    com.ExecuteNonQuery();
+                    connect.Close();
+                }
+            }
+            catch (SqlException e)
+            {
+                
+                Console.Write(e.ToString());
             }
             Response.Redirect("~/Grouping/SingleGroup.aspx?GroupName=" + txtGroupName.Text);
         }
 
         //Add Mcu button click event that verifys a row(MCU) check box is selected and if so updates the MCU table with the current group name.
-        protected void BtnAddMcu_Click(object sender, EventArgs e)
+        protected void BtnAddMcu_Click(object sender, EventArgs a)
         {
             String GroupName = Request.QueryString["GroupName"];
             //Loops through each row in the database to verify if check box has been selected.
@@ -84,14 +100,22 @@ namespace Agrivolution.Grouping
 
                 if (chk.Checked == true)
                 {
-                    SqlConnection connect = new SqlConnection(connString);
+                    try
                     {
-                        connect.Open();
-                        SqlCommand com = new SqlCommand("update MCUList set [Group]=@GroupName where MCUID=@currentMCUID", connect);
-                        com.Parameters.AddWithValue("@GroupName", GroupName);
-                        com.Parameters.AddWithValue("@currentMCUID", lbHolder.Text);
-                        com.ExecuteNonQuery();
-                        connect.Close();
+                        SqlConnection connect = new SqlConnection(connString);
+                        {
+                            connect.Open();
+                            SqlCommand com = new SqlCommand("update MCUList set [Group]=@GroupName where MCUID=@currentMCUID", connect);
+                            com.Parameters.AddWithValue("@GroupName", GroupName);
+                            com.Parameters.AddWithValue("@currentMCUID", lbHolder.Text);
+                            com.ExecuteNonQuery();
+                            connect.Close();
+                        }
+                    }
+                    catch (SqlException e)
+                    {
+                        
+                        Console.Write(e.ToString());
                     }
                 }
             }
@@ -99,7 +123,7 @@ namespace Agrivolution.Grouping
         }
 
         //Remove Mcu button click event that verifys a row(MCU) check box is selected and if so updates the MCU table with a null value for the group value.
-        protected void btnRemove_Click(object sender, EventArgs e)
+        protected void btnRemove_Click(object sender, EventArgs a)
         {
             String GroupName = Request.QueryString["GroupName"];
 
@@ -111,14 +135,22 @@ namespace Agrivolution.Grouping
                 CheckBox chk = (CheckBox)GridRemoveMcu.Rows[i].FindControl("ChkRemove");
                 if (chk.Checked == true)
                 {
-                    SqlConnection connect = new SqlConnection(connString);
+                    try
                     {
-                        connect.Open();
-                        SqlCommand com = new SqlCommand("update MCUList set [Group]=@GroupName where MCUID=@currentMCUID", connect);
-                        com.Parameters.AddWithValue("@GroupName", DBNull.Value);
-                        com.Parameters.AddWithValue("@currentMCUID", lbHolder.Text);
-                        com.ExecuteNonQuery();
-                        connect.Close();
+                        SqlConnection connect = new SqlConnection(connString);
+                        {
+                            connect.Open();
+                            SqlCommand com = new SqlCommand("update MCUList set [Group]=@GroupName where MCUID=@currentMCUID", connect);
+                            com.Parameters.AddWithValue("@GroupName", DBNull.Value);
+                            com.Parameters.AddWithValue("@currentMCUID", lbHolder.Text);
+                            com.ExecuteNonQuery();
+                            connect.Close();
+                        }
+                    }
+                    catch (SqlException e)
+                    {
+                        
+                        Console.Write(e.ToString());
                     }
                 }
             }
