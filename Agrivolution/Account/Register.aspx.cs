@@ -15,8 +15,23 @@ namespace Agrivolution.Account
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-            var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text, Address1 = Address1.Text, Address2 = Address2.Text, 
-                FirstName = FirstName.Text, LastName = LastName.Text, Phone = Phone.Text };
+            try
+            {
+                var user = new ApplicationUser()
+                {
+                    UserName = Email.Text,
+                    Email = Email.Text,
+                    Address1 = Address1.Text,
+                    Address2 = Address2.Text,
+                    FirstName = FirstName.Text,
+                    LastName = LastName.Text,
+                    Phone = Phone.Text
+                };
+            }
+            catch (MemberAccessException ex)
+            {
+                ErrorMessage.Text = ex.Message;
+            }
             IdentityResult result = manager.Create(user, Password.Text);
             if (result.Succeeded)
             {
@@ -27,7 +42,6 @@ namespace Agrivolution.Account
 
                 if (user.EmailConfirmed)
                 {
-                    //IdentityHelper.SignIn(manager, user, isPersistent: false);
                     signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
                     IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                 }

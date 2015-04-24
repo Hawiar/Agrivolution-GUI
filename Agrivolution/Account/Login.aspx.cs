@@ -81,9 +81,16 @@ namespace Agrivolution.Account
                 {
                     string code = manager.GenerateEmailConfirmationToken(user.Id);
                     string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
-                    manager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.");
+                    try
+                    {
+                        manager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.");
 
-                    FailureText.Text = "Confirmation email sent. Please view the email and confirm your account.";
+                        FailureText.Text = "Confirmation email sent. Please view the email and confirm your account.";
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
                     ErrorMessage.Visible = true;
                     ResendConfirm.Visible = false;
                 }
