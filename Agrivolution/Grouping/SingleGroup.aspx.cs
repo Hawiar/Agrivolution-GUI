@@ -37,8 +37,8 @@ namespace Agrivolution.Grouping
                         if (read.Read())
                         {
                             txtGroupName.Text = read["GroupName"].ToString();
-                            string boool = read["Fan"].ToString();
-                            if (boool.Equals("True"))
+                            string FanStatus = read["Fan"].ToString();
+                            if (FanStatus.Equals("True"))
                             {
                                 ddlFan.Text = "1";
                             }
