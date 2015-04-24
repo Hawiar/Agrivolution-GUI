@@ -14,16 +14,6 @@ namespace Agrivolution
 
         }
 
-        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void GridView1_SelectedIndexChanged1(object sender, EventArgs e)
-        {
-
-        }
-
         protected void btnCreateGroup_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Grouping/NewGroup.aspx");
