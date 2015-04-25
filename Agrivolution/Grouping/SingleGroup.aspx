@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SingleGroup.aspx.cs" Inherits="Agrivolution.Grouping.WebForm1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <!--Dynamic grid view to display the list of all MCUs that do not have a group associated with them.-->
-    <asp:GridView ID="GridAddMcu" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="MCUID" DataSourceID="SqlDataGridAddMcu" Width="493px">
+    <asp:GridView ID="GridAddMcu" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="MCUID" DataSourceID="SqlDataGridAddMcu" Width="493px" OnSelectedIndexChanged="GridAddMcu_SelectedIndexChanged">
         <Columns>
             <asp:TemplateField>
                 <ItemTemplate>
@@ -20,7 +20,12 @@
             <asp:BoundField DataField="Facility" HeaderText="Facility" SortExpression="Facility" />
         </Columns>
     </asp:GridView>
-    <asp:SqlDataSource ID="SqlDataGridAddMcu" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [MCUID], [Room], [Facility], [Group] FROM [MCUList] WHERE ([Group] IS NULL)"></asp:SqlDataSource>
+    <asp:HiddenField runat="server" ID="UseName"/>
+    <asp:SqlDataSource ID="SqlDataGridAddMcu" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [MCUId], [Room], [Facility] FROM [MCU] WHERE (([GroupName] IS NULL) AND ([UserName] = @UserName))">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="UseName" Name="UserName" Type="String" DefaultValue="Anonymous" />
+        </SelectParameters>
+    </asp:SqlDataSource>
     <!--Sets up html controls for Group control.-->
     <div>
         <p>
@@ -60,14 +65,14 @@
                         <asp:Label ID="lblMCUId2" runat="server" Text='<%# Bind("MCUID") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="Group" HeaderText="Group" SortExpression="Group" />
+                <asp:BoundField DataField="GroupName" HeaderText="Group" SortExpression="GroupName" />
                 <asp:BoundField DataField="Room" HeaderText="Room" SortExpression="Room" />
                 <asp:BoundField DataField="Facility" HeaderText="Facility" SortExpression="Facility" />
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataGridRemoveMcu" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [Group], [Room], [Facility], [MCUID] FROM [MCUList] WHERE ([Group] = @Group)">
+        <asp:SqlDataSource ID="SqlDataGridRemoveMcu" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [MCUId], [GroupName], [Room], [Facility] FROM [MCU] WHERE ([GroupName] = @GroupName)">
             <SelectParameters>
-                <asp:QueryStringParameter Name="Group" QueryStringField="GroupName" Type="String" />
+                <asp:QueryStringParameter Name="GroupName" QueryStringField="GroupName" Type="String" />
             </SelectParameters>
         </asp:SqlDataSource>
         <br />

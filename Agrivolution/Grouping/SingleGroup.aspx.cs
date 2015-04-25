@@ -18,15 +18,16 @@ namespace Agrivolution.Grouping
         //Will update comments on this section when i refactor post back
         protected void Page_Load(object sender, EventArgs a)
         {
-
+            //UseName.value = User.Identity.Name;
             if (IsPostBack)
             {
 
             }
             else
             {
+                //Hidden value used to populate datagrid parameter value.
+                UseName.Value = User.Identity.Name;
                 String GroupName = Request.QueryString["GroupName"];
-
                 try
                 {
                     SqlConnection connect = new SqlConnection(connString);
@@ -94,20 +95,17 @@ namespace Agrivolution.Grouping
             //Loops through each row in the database to verify if check box has been selected.
             for (int i = 0; i < GridAddMcu.Rows.Count; i++)
             {
-                //temp label and check box to be able to access values for sql params
-                Label lbHolder = (Label)GridAddMcu.Rows[i].FindControl("lblMcuId");
-                CheckBox chk = (CheckBox)GridAddMcu.Rows[i].FindControl("ChkAdd");
-
-                if (chk.Checked == true)
+                if (((CheckBox)GridAddMcu.Rows[i].FindControl("ChkAdd")).Checked == true)
                 {
                     try
                     {
                         SqlConnection connect = new SqlConnection(connString);
                         {
+                            int test = Convert.ToInt32(((Label)GridAddMcu.Rows[i].FindControl("lblMcuId")).Text);
                             connect.Open();
-                            SqlCommand com = new SqlCommand("update MCUList set [Group]=@GroupName where MCUID=@currentMCUID", connect);
+                            SqlCommand com = new SqlCommand("update MCU set GroupName=@GroupName where MCUId=@currentMCUID", connect);
                             com.Parameters.AddWithValue("@GroupName", GroupName);
-                            com.Parameters.AddWithValue("@currentMCUID", lbHolder.Text);
+                            com.Parameters.AddWithValue("@currentMCUID", test);
                             com.ExecuteNonQuery();
                             connect.Close();
                         }
@@ -140,7 +138,7 @@ namespace Agrivolution.Grouping
                         SqlConnection connect = new SqlConnection(connString);
                         {
                             connect.Open();
-                            SqlCommand com = new SqlCommand("update MCUList set [Group]=@GroupName where MCUID=@currentMCUID", connect);
+                            SqlCommand com = new SqlCommand("update MCU set GroupName=@GroupName where MCUId=@currentMCUID", connect);
                             com.Parameters.AddWithValue("@GroupName", DBNull.Value);
                             com.Parameters.AddWithValue("@currentMCUID", lbHolder.Text);
                             com.ExecuteNonQuery();
@@ -155,6 +153,11 @@ namespace Agrivolution.Grouping
                 }
             }
             Response.Redirect("~/Grouping/SingleGroup.aspx?GroupName=" + GroupName);
+        }
+
+        protected void GridAddMcu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

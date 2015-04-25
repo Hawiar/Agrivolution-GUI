@@ -20,11 +20,11 @@ namespace Agrivolution.Grouping
                 String connString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
                 SqlConnection connect = new SqlConnection(connString);
                 {
-                    SqlCommand com = new SqlCommand("Insert into GroupsMasterList(GroupName, Fan, LightTimer) Values(@GroupName, @Fan, @LightTimer)", connect);
+                    SqlCommand com = new SqlCommand("Insert into GroupsMasterList(GroupName, Fan, LightTimer, UserName) Values(@GroupName, @Fan, @LightTimer, @UserName)", connect);
                     com.Parameters.AddWithValue("@GroupName", txtGroupName.Text);
                     com.Parameters.AddWithValue("@Fan", Convert.ToInt32(ddlFan.Text));
                     com.Parameters.AddWithValue("@LightTimer", txtLightTimer.Text);
-
+                    com.Parameters.AddWithValue("@UserName", User.Identity.Name);
                     connect.Open();
                     com.ExecuteNonQuery();
                     connect.Close();

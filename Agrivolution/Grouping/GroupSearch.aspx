@@ -18,7 +18,12 @@
         </Columns>
     </asp:GridView>
     <!--Datasource to link with the datagrid to help populate the data table from the databgase-->
-    <asp:SqlDataSource ID="SqlDataSourceGroupTable" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT * FROM [GroupsMasterList]"></asp:SqlDataSource>
+    <asp:HiddenField runat="server" ID="UseName"/>
+    <asp:SqlDataSource ID="SqlDataSourceGroupTable" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT * FROM [GroupsMasterList] WHERE UserName = @UserName">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="UseName" Name="UserName" Type="String" DefaultValue="Anonymous" />
+        </SelectParameters>
+    </asp:SqlDataSource>
     <br>
     <asp:Button ID="btnCreateGroup" runat="server" Text="Create Group" OnClick="btnCreateGroup_Click" />
 </asp:Content>
