@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SingleGroup.aspx.cs" Inherits="Agrivolution.Grouping.WebForm1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <!--Dynamic grid view to display the list of all MCUs that do not have a group associated with them.-->
-    <asp:GridView ID="GridAddMcu" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="MCUID" DataSourceID="SqlDataGridAddMcu" Width="493px" OnSelectedIndexChanged="GridAddMcu_SelectedIndexChanged">
+    <asp:GridView ID="GridAddMcu" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="MCUID" DataSourceID="SqlDataGridAddMcu" Width="493px">
         <Columns>
             <asp:TemplateField>
                 <ItemTemplate>
