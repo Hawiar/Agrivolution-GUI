@@ -49,6 +49,15 @@ namespace Agrivolution.Grouping {
         protected global::System.Web.UI.WebControls.Button BtnAddMcu;
         
         /// <summary>
+        /// lblWarningMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblWarningMessage;
+        
+        /// <summary>
         /// lblGroupName control.
         /// </summary>
         /// <remarks>

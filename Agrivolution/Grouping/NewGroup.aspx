@@ -2,6 +2,7 @@
 
 <asp:Content ID="ContentMain" ContentPlaceHolderID="MainContent" runat="server">
     <div>
+        <asp:Label ID="lblWarning" runat="server"></asp:Label>
         <br>
         <p>
             <asp:Label ID="lblGroupName" runat="server" Text="Group Name: "></asp:Label>

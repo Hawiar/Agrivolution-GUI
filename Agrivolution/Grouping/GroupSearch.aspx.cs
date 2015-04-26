@@ -19,7 +19,7 @@ namespace Agrivolution
         //Click event to redirect to the new group template.
         protected void btnCreateGroup_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Grouping/NewGroup.aspx");
+            Response.Redirect("~/Grouping/NewGroup.aspx?Msg=New");
         }
     }
 }

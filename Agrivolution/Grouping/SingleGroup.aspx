@@ -32,6 +32,9 @@
             <asp:Button ID="BtnAddMcu" runat="server" OnClick="BtnAddMcu_Click" Text="Add To Group" />
         </p>
         <p>
+            <asp:Label ID="lblWarningMessage" runat="server" Visible="False"></asp:Label>
+        </p>
+        <p>
             <asp:Label ID="lblGroupName" runat="server" Text="Group Name: "></asp:Label>
             <asp:TextBox ID="txtGroupName" runat="server"></asp:TextBox>
         </p>
