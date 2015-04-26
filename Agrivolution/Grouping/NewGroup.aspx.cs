@@ -16,6 +16,7 @@ namespace Agrivolution.Grouping
         {
             String warning = Request.QueryString["Msg"];
             lblWarning.ForeColor = Color.Red;
+             //If an error message appears it reads the query string of the message provided and displays a message to the user.
             if (warning.Equals("Name"))
             {
                 lblWarning.Text = "Warning: This group name has already been taken.";
