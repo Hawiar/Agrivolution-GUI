@@ -386,6 +386,22 @@
     <Compile Include="Migrations\201504172157002_UserPhone.Designer.cs">
       <DependentUpon>201504172157002_UserPhone.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504262022219_UserState.cs" />
+    <Compile Include="Migrations\201504262022219_UserState.Designer.cs">
+      <DependentUpon>201504262022219_UserState.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504262206545_UserCity.cs" />
+    <Compile Include="Migrations\201504262206545_UserCity.Designer.cs">
+      <DependentUpon>201504262206545_UserCity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504262209195_UserZip.cs" />
+    <Compile Include="Migrations\201504262209195_UserZip.Designer.cs">
+      <DependentUpon>201504262209195_UserZip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504270119219_UserTimeZone.cs" />
+    <Compile Include="Migrations\201504270119219_UserTimeZone.Designer.cs">
+      <DependentUpon>201504270119219_UserTimeZone.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Controls.aspx.cs">
       <DependentUpon>Controls.aspx</DependentUpon>
@@ -461,6 +477,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504172157002_UserPhone.resx">
       <DependentUpon>201504172157002_UserPhone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504262022219_UserState.resx">
+      <DependentUpon>201504262022219_UserState.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504262206545_UserCity.resx">
+      <DependentUpon>201504262206545_UserCity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504262209195_UserZip.resx">
+      <DependentUpon>201504262209195_UserZip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504270119219_UserTimeZone.resx">
+      <DependentUpon>201504270119219_UserTimeZone.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

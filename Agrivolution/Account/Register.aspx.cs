@@ -15,23 +15,21 @@ namespace Agrivolution.Account
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-            try
-            {
-                var user = new ApplicationUser()
+            var user = new ApplicationUser()
                 {
                     UserName = Email.Text,
                     Email = Email.Text,
                     Address1 = Address1.Text,
                     Address2 = Address2.Text,
+                    State = State.Text,
+                    City = City.Text,
+                    TimeZone = TimeZone.Text,
+                    Zip = Zip.Text,
                     FirstName = FirstName.Text,
                     LastName = LastName.Text,
                     Phone = Phone.Text
                 };
-            }
-            catch (MemberAccessException ex)
-            {
-                ErrorMessage.Text = ex.Message;
-            }
+
             IdentityResult result = manager.Create(user, Password.Text);
             if (result.Succeeded)
             {
