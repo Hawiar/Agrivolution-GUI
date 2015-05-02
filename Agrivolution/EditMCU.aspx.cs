@@ -19,14 +19,20 @@ namespace Agrivolution
         {
 
             
-            //String MCUId = Request.QueryString["MCUId"];
-            String MCUId = "1";
-            
+            String MCUId = Request.QueryString["MCUId"];
+            if (IsPostBack)
+            {
+
+            }
+            else
+            {
+                MCULabel.Text = MCUId;
+
                 try
                 {
                     SqlConnection connect = new SqlConnection(connString);
                     {
-                        SqlCommand com = new SqlCommand("select * from MCUlist where MCUId='" + MCUId + "'", connect);
+                        SqlCommand com = new SqlCommand("select * from MCU where MCUId='" + MCUId + "'", connect);
                         connect.Open();
                         SqlDataReader read = com.ExecuteReader();
                         if (read.Read())
@@ -41,16 +47,8 @@ namespace Agrivolution
                                 fanSwitch.Text = "0";
                             }
 
-                            boolean = read["PumpStatus"].ToString();
-                            if (boolean.Equals("True"))
-                            {
-                                pumpSwitch.Text = "1";
-                            }
-                            else
-                            {
-                                pumpSwitch.Text = "0";
-                            }
                             lightTimerValue.Text = read["LightSchedule"].ToString();
+                            cropType.Text = read["CropType"].ToString();
                         }
                         read.Close();
                         connect.Close();
@@ -61,40 +59,22 @@ namespace Agrivolution
 
                     Console.Write(ex.ToString());
                 }
+            }
             
         }
 
         protected void setMCUValues(object sender, EventArgs e)
         {
-            //String MCUId = Request.QueryString["MCUId"];
-            String MCUId = "1";
+            String MCUId = Request.QueryString["MCUId"];
 
-            int fanBit;
-            int pumpBit;
-            if (fanSwitch.Text.Equals("1"))
-            {
-                fanBit = 1;
-            }
-            else
-            {
-                fanBit = 0;
-            }
-            if (pumpSwitch.Text.Equals("1"))
-            {
-                pumpBit = 1;
-            }
-            else
-            {
-                pumpBit = 0;
-            }
             try { 
             SqlConnection connect = new SqlConnection(connString);
             {
                 connect.Open();
-                SqlCommand com = new SqlCommand("update MCU set FanStatus=@FanStatus, LightSchedule=@LightSchedule, PumpStatus=@PumpStatus where MCUId=@initializerMCUId", connect);
-                com.Parameters.AddWithValue("@FanStatus", fanBit);
-                com.Parameters.AddWithValue("@PumpStatus", pumpBit);
+                SqlCommand com = new SqlCommand("update MCU set FanStatus=@FanStatus, LightSchedule=@LightSchedule, CropType=@CropType where MCUId=@initializerMCUId", connect);
+                com.Parameters.AddWithValue("@FanStatus", Convert.ToInt32(fanSwitch.Text));
                 com.Parameters.AddWithValue("@LightSchedule", lightTimerValue.Text);
+                com.Parameters.AddWithValue("@CropType", cropType.Text);
                 com.Parameters.AddWithValue("@initializerMCUId", MCUId);
                 com.ExecuteNonQuery();
                 connect.Close();
@@ -105,7 +85,23 @@ namespace Agrivolution
 
                 Console.Write(ex.ToString());
             }
-            //Response.Redirect();  fix this
+        }
+
+        protected void redirectToRoom(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            Response.Redirect("EditRoom?Room=" + btn.Text);
+        }
+
+        protected void redirectToGroup(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            //Response.Redirect("SingleGroup?GroupName=" + btn.Text);      fix this
+        }
+
+        protected void returnClick(object sender, EventArgs e)
+        {
+            //Response.Redirect("Controls");      fix this
         }
     }
 }
