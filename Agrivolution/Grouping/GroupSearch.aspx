@@ -16,7 +16,7 @@
                 </EditItemTemplate>
                 <ItemTemplate>
                     <!--Link to direct users to an individual group page. Also passes a query string.-->
-                    <a href='SingleGroup.aspx?GroupName=<%# Eval("GroupName") %>'>View</a>
+                    <a href='SingleGroup.aspx?GroupName=<%# Eval("GroupName") %>&Msg=None'>View</a>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="GroupName">

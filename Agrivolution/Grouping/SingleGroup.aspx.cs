@@ -25,7 +25,18 @@ namespace Agrivolution.Grouping
             GroupName = Request.QueryString["GroupName"];
             if (IsPostBack)
             {
+                String warning = Request.QueryString["Msg"];
                 lblWarningMessage.Visible = true;
+                if(warning.Equals("Name"))
+                {
+                                lblWarningMessage.ForeColor = Color.Red;
+                                lblWarningMessage.Text = "Warning: Please choose a Group Name that does not exist in the system.";
+                }
+                if(warning.Equals("Time"))
+                {
+                    lblWarningMessage.ForeColor = Color.Red;
+                    lblWarningMessage.Text = "Warning: Correct Start and End time format is hh:mm AM/PM";
+                }
             }
             else
             {
@@ -33,6 +44,18 @@ namespace Agrivolution.Grouping
                 //Hidden value used to populate datagrid parameter value.
                 //When page loads populates textboxes and DDL with the groups information from the database.
                 UseName.Value = User.Identity.Name;
+                String warning = Request.QueryString["Msg"];
+                lblWarningMessage.Visible = true;
+                if (warning.Equals("Name"))
+                {
+                    lblWarningMessage.ForeColor = Color.Red;
+                    lblWarningMessage.Text = "Warning: Please choose a Group Name that does not exist in the system.";
+                }
+                if (warning.Equals("Time"))
+                {
+                    lblWarningMessage.ForeColor = Color.Red;
+                    lblWarningMessage.Text = "Warning: Correct Start and End time format is hh:mm AM/PM";
+                }
                 try
                 {
                     SqlConnection connect = new SqlConnection(connString);
@@ -152,10 +175,8 @@ namespace Agrivolution.Grouping
                             //If true a name exist in the data base nothing happens warning message appears.
                             if (groupCheck != null)
                             {
-                                lblWarningMessage.ForeColor = Color.Red;
-                                lblWarningMessage.Text = "Warning: Please choose a Group Name that does not exist in the system.";
                                 connect.Close();
-                                Response.Redirect("~/Grouping/SingleGroup.aspx?GroupName=" + GroupName);
+                                Response.Redirect("~/Grouping/SingleGroup.aspx?GroupName=" + GroupName + "&Msg=Name");
                             }
                             //Updates the MCUs that belong to this group to the new group and update control values for Fan status and Light.
                             com = getCommand(connect, LightStartTime, LightEndTime, LightTimeTotal);
@@ -187,12 +208,11 @@ namespace Agrivolution.Grouping
                     Console.Write(e.ToString());
                     throw e;
                 }
-                Response.Redirect("~/Grouping/SingleGroup.aspx?GroupName=" + txtGroupName.Text);
+                Response.Redirect("~/Grouping/SingleGroup.aspx?GroupName=" + txtGroupName.Text + "&Msg=None");
             }
             else
             {
-                lblWarningMessage.ForeColor = Color.Red;
-                lblWarningMessage.Text = "Warning: Correct Start and End time format is hh:mm AM/PM";
+                Response.Redirect("~/Grouping/SingleGroup.aspx?GroupName=" + GroupName + "&Msg=Time");
             }
         }
 
@@ -244,7 +264,7 @@ namespace Agrivolution.Grouping
                     }
                 }
             }
-            Response.Redirect("~/Grouping/SingleGroup.aspx?GroupName=" + GroupName);
+            Response.Redirect("~/Grouping/SingleGroup.aspx?GroupName=" + GroupName + "&Msg=None");
         }
 
         //Remove Mcu button click event that verifys a row(MCU) check box is selected and if so updates the MCU table with a null value for the group value.
@@ -279,7 +299,7 @@ namespace Agrivolution.Grouping
                     }
                 }
             }
-            Response.Redirect("~/Grouping/SingleGroup.aspx?GroupName=" + GroupName);
+            Response.Redirect("~/Grouping/SingleGroup.aspx?GroupName=" + GroupName + "&Msg=None");
         }
 
         //Method used to build a sql command that was being used in several parts of this class.

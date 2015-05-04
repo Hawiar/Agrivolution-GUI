@@ -24,7 +24,7 @@ namespace Agrivolution.Grouping
             }
             if (warning.Equals("Timer"))
             {
-                lblWarning.Text = "Warning: Please enter a positive integer value for the light cycle.";
+                lblWarning.Text = "Warning: Correct Start and End time format is hh:mm AM/PM";
             }
         }
 
