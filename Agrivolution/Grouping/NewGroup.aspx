@@ -1,8 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NewGroup.aspx.cs" Inherits="Agrivolution.Grouping.WebForm2" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+<asp:Content ID="ContentMain" ContentPlaceHolderID="MainContent" runat="server">
     <div>
-        <p>
-        </p>
+        <asp:Label ID="lblWarning" runat="server"></asp:Label>
+        <br>
         <p>
             <asp:Label ID="lblGroupName" runat="server" Text="Group Name: "></asp:Label>
             <asp:TextBox ID="txtGroupName" runat="server"></asp:TextBox>
@@ -15,8 +16,12 @@
             </asp:DropDownList>
         </p>
         <p>
-            <asp:Label ID="lblLightTimer" runat="server" Text="Lighting Cycle(Hours): "></asp:Label>
+            <asp:Label ID="lblLightTimer" runat="server" Text="Start Time(HH:MM AM/PM): "></asp:Label>
             <asp:TextBox ID="txtLightTimer" runat="server"></asp:TextBox>
+        </p>
+        <p>
+            <asp:Label ID="lblLightTimerEnd" runat="server" Text="End Time(HH:MM AM/PM): "></asp:Label>
+            &nbsp;<asp:TextBox ID="txtLightTimerEnd" runat="server"></asp:TextBox>
         </p>
         <p>
             <asp:Button ID="btnSaveGroup" runat="server" Text="Save Grouping" OnClick="btnSaveGroup_Click" />
