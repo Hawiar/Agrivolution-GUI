@@ -5,7 +5,12 @@
     <!--Dynamic grid view to display the list of all groups created in the system.-->
     <asp:GridView ID="GridViewCurrentGroups" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="SqlDataSourceGroupTable" Width="349px">
         <Columns>
-            <asp:TemplateField HeaderText="GroupName" InsertVisible="False" SortExpression="GroupName">
+            <asp:TemplateField>
+                <ItemTemplate>
+                    <asp:CheckBox ID="ChkRemove" runat="server" />
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="View" InsertVisible="False" SortExpression="GroupName">
                 <EditItemTemplate>
                     <asp:Label ID="lblGroupName" runat="server" Text='<%# Eval("GroupName") %>'></asp:Label>
                 </EditItemTemplate>
@@ -14,7 +19,11 @@
                     <a href='SingleGroup.aspx?GroupName=<%# Eval("GroupName") %>'>View</a>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField DataField="GroupName" HeaderText="GroupName" SortExpression="GroupName" />
+            <asp:TemplateField HeaderText="GroupName">
+                <ItemTemplate>
+                    <asp:Label ID="lblGroupName" runat="server" Text='<%# Bind("GroupName") %>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
         </Columns>
     </asp:GridView>
     <!--Datasource to link with the datagrid to help populate the data table from the databgase-->
@@ -25,5 +34,6 @@
         </SelectParameters>
     </asp:SqlDataSource>
     <br>
+    <asp:Button ID="btnRemove" runat="server" OnClick="btnRemove_Click" Text="Remove Group" Width="131px" />
     <asp:Button ID="btnCreateGroup" runat="server" Text="Create Group" OnClick="btnCreateGroup_Click" />
 </asp:Content>

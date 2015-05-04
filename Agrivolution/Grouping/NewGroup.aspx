@@ -16,8 +16,12 @@
             </asp:DropDownList>
         </p>
         <p>
-            <asp:Label ID="lblLightTimer" runat="server" Text="Lighting Cycle(Hours): "></asp:Label>
+            <asp:Label ID="lblLightTimer" runat="server" Text="Start Time(HH:MM AM/PM): "></asp:Label>
             <asp:TextBox ID="txtLightTimer" runat="server"></asp:TextBox>
+        </p>
+        <p>
+            <asp:Label ID="lblLightTimerEnd" runat="server" Text="End Time(HH:MM AM/PM): "></asp:Label>
+            &nbsp;<asp:TextBox ID="txtLightTimerEnd" runat="server"></asp:TextBox>
         </p>
         <p>
             <asp:Button ID="btnSaveGroup" runat="server" Text="Save Grouping" OnClick="btnSaveGroup_Click" />

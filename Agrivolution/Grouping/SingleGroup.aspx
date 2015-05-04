@@ -32,7 +32,7 @@
             <asp:Button ID="BtnAddMcu" runat="server" OnClick="BtnAddMcu_Click" Text="Add To Group" />
         </p>
         <p>
-            <asp:Label ID="lblWarningMessage" runat="server" Visible="False"></asp:Label>
+            <asp:Label ID="lblWarningMessage" runat="server"></asp:Label>
         </p>
         <p>
             <asp:Label ID="lblGroupName" runat="server" Text="Group Name: "></asp:Label>
@@ -46,8 +46,12 @@
             </asp:DropDownList>
         </p>
         <p>
-            <asp:Label ID="lblLightTimer" runat="server" Text="Lighting Cycle(Hours): "></asp:Label>
+            <asp:Label ID="lblLightTimer" runat="server" Text="Start Time(HH:MM AM/PM): "></asp:Label>
             <asp:TextBox ID="txtLightTimer" runat="server"></asp:TextBox>
+        </p>
+        <p>
+            <asp:Label ID="lblLightTimerEnd" runat="server" Text="End Time(HH:MM AM/PM): "></asp:Label>
+            &nbsp;<asp:TextBox ID="txtLightTimerEnd" runat="server"></asp:TextBox>
         </p>
         <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />
         <br />
