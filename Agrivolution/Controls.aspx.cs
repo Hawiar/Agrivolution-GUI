@@ -55,6 +55,8 @@ namespace Agrivolution
          * */
         protected void generateGridView()
         {
+            typeBreak = Request.QueryString["type"];
+            keyBreak = Request.QueryString["key"];
             dt = new DataTable();
             String connString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection connect = new SqlConnection(connString);
@@ -160,6 +162,8 @@ namespace Agrivolution
             **/
         protected void generateStatsTable()
         {
+            typeBreak = Request.QueryString["type"];
+            keyBreak = Request.QueryString["key"];
             //Do not show
             if (keyBreak == null || typeBreak == null)
             {
@@ -171,7 +175,7 @@ namespace Agrivolution
                 String connString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
                 SqlConnection connect = new SqlConnection(connString);
                 SqlCommand com;
-                com = new SqlCommand("SELECT * FROM [dbo].[MCU] INNER JOIN [dbo].[MCUData] WHERE " + typeBreak + "= @Key AND UserName = " + "'" + User.Identity.Name + "'", connect);
+                com = new SqlCommand("SELECT TOP 1 * FROM [dbo].[MCU] t1 JOIN [dbo].[MCUData] t2 ON t1.MCUId = t2.MCUId WHERE t1." + typeBreak + " = @Key AND UserName = " + "'" + User.Identity.Name + "'", connect);
 
 
                 //MCUID is the only time where the Parameter may be an integer. Parse accordingly.
@@ -206,30 +210,45 @@ namespace Agrivolution
                             StatsBlock.Columns[1].Visible = false;
                             StatsBlock.Columns[2].Visible = false;
                             StatsBlock.Columns[3].Visible = true;
+                            StatsBlock.Columns[4].Visible = true;
+                            StatsBlock.Columns[5].Visible = true;
+                            StatsBlock.Columns[6].Visible = true;
                             break;
                         case "MCUId":
                             StatsBlock.Columns[0].Visible = true;
                             StatsBlock.Columns[1].Visible = true;
                             StatsBlock.Columns[2].Visible = true;
                             StatsBlock.Columns[3].Visible = true;
+                            StatsBlock.Columns[4].Visible = true;
+                            StatsBlock.Columns[5].Visible = true;
+                            StatsBlock.Columns[6].Visible = true;
                             break;
                         case "Room":
                             StatsBlock.Columns[0].Visible = true;
                             StatsBlock.Columns[1].Visible = true;
-                            StatsBlock.Columns[2].Visible = false;
+                            StatsBlock.Columns[2].Visible = true;
                             StatsBlock.Columns[3].Visible = false;
+                            StatsBlock.Columns[4].Visible = false;
+                            StatsBlock.Columns[5].Visible = false;
+                            StatsBlock.Columns[6].Visible = false;
                             break;
                         case "Facility":
                             StatsBlock.Columns[0].Visible = false;
                             StatsBlock.Columns[1].Visible = false;
                             StatsBlock.Columns[2].Visible = false;
                             StatsBlock.Columns[3].Visible = false;
+                            StatsBlock.Columns[4].Visible = false;
+                            StatsBlock.Columns[5].Visible = false;
+                            StatsBlock.Columns[6].Visible = false;
                             break;
                         case null:
                             StatsBlock.Columns[0].Visible = false;
                             StatsBlock.Columns[1].Visible = false;
                             StatsBlock.Columns[2].Visible = false;
                             StatsBlock.Columns[3].Visible = false;
+                            StatsBlock.Columns[4].Visible = false;
+                            StatsBlock.Columns[5].Visible = false;
+                            StatsBlock.Columns[6].Visible = false;
                             break;
                     }
 

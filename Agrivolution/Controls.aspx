@@ -68,8 +68,11 @@
         <Columns>
             <asp:BoundField DataField="Humidity" runat="server" HeaderText="Humidity" Visible="true" />
             <asp:BoundField DataField="Temperature" runat="server" HeaderText="Temperature" Visible="true" />
-            <asp:BoundField DataField="CO2Level" runat="server" HeaderText="CO2 Humidity" Visible="true" />
+            <asp:BoundField DataField="CO2" runat="server" HeaderText="CO2 Level" Visible="true" />
             <asp:BoundField DataField="LightStatus" runat="server" HeaderText="Light Status" Visible="true" />
+            <asp:BoundField DataField="FanStatus" runat="server" HeaderText="Fan Status" Visible="true" />
+            <asp:BoundField DataField="LightOn" runat="server" HeaderText="Light On Time" Visible="true" />
+            <asp:BoundField DataField="LightOff" runat="server" HeaderText="Light Off Time" Visible="true" />
         </Columns>
     </asp:GridView>
 </asp:Content>
