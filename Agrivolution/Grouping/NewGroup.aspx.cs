@@ -79,7 +79,7 @@ namespace Agrivolution.Grouping
                         com.ExecuteNonQuery();
                         connect.Close();
                         //Redirects to a groups single page passing a query string of the Groups name.
-                        Response.Redirect("~/Grouping/SingleGroup.aspx?GroupName=" + txtGroupName.Text);
+                        Response.Redirect("~/Grouping/SingleGroup.aspx?GroupName=" + txtGroupName.Text + "&Msg=None");
                     }
                 }
             }

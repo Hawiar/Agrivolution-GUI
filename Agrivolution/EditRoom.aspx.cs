@@ -32,12 +32,34 @@ namespace Agrivolution
             UseName.Value = User.Identity.Name;
             if (IsPostBack)
             {
+                String room = Request.QueryString["Room"];
+                try
+                {
+                    SqlConnection connect = new SqlConnection(connString);
+                    roomLabel.Text = room;
+                    SqlCommand checkExists = new SqlCommand("select * from MCU where Room='" + room + "' AND UserName=@UserName", connect);
+                    connect.Open();
+                    checkExists.Parameters.AddWithValue("UserName", User.Identity.Name);
+                    Object exists = checkExists.ExecuteScalar();
+                    if (exists == null)
+                    {
+                        deleteRoom.Visible = true;
+                    }
+                    else
+                    {
+                        deleteRoom.Visible = false;
+                    }
+                    connect.Close();
+                }
+                catch (SqlException ex)
+                {
 
+                    Console.Write(ex.ToString());
+                }
             }
             else
             {
                 String room = Request.QueryString["Room"];
-                roomLabel.Text = room;
 
                 try
                 {
@@ -64,7 +86,7 @@ namespace Agrivolution
                         }
                         read.Close();
                         SqlCommand checkExists = new SqlCommand("select * from MCU where Room='" + room + "' AND UserName=@UserName", connect);
-                        com.Parameters.AddWithValue("UserName", User.Identity.Name);
+                        checkExists.Parameters.AddWithValue("UserName", User.Identity.Name);
                         Object exists = checkExists.ExecuteScalar();
                         if (exists == null)
                         {

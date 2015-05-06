@@ -174,7 +174,7 @@ namespace Agrivolution
                 String connString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
                 SqlConnection connect = new SqlConnection(connString);
                 SqlCommand com;
-                com = new SqlCommand("SELECT TOP 1 * FROM [dbo].[MCU] t1 JOIN [dbo].[MCUData] t2 ON t1.MCUId = t2.MCUId WHERE t1." + typeBreak + " = @Key AND UserName = " + "'" + User.Identity.Name + "'", connect);
+                com = new SqlCommand("SELECT TOP 1 * FROM [dbo].[MCU] t1 JOIN [dbo].[MCUData] t2 ON t1.MCUId = t2.MCUId WHERE t1." + typeBreak + " = @Key AND t1.UserName = " + "'" + User.Identity.Name + "'", connect);
 
 
                 //MCUID is the only time where the Parameter may be an integer. Parse accordingly.

@@ -203,7 +203,7 @@ namespace Agrivolution
         protected void redirectToGroup(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            Response.Redirect("SingleGroup?GroupName=" + btn.Text);
+            Response.Redirect("~/Group/SingleGroup?GroupName=" + btn.Text + "&Msg=None");
         }
 
         /**
