@@ -49,18 +49,20 @@ namespace Agrivolution
         // the Warnings table with an Error ID later used to generate more descriptive
         // error messages.
         // The restriction values will need to be updated.
-        protected void populateWarningsTable() 
+        protected void populateWarningsTable()
         {
             try
             {
                 SqlConnection connect = new SqlConnection(connString);
                 SqlConnection connect2 = new SqlConnection(connString);
+
+                String currentUser = User.Identity.Name;
                 {
                     connect.Open();
                     connect2.Open();
                     SqlCommand readCommand = new SqlCommand("Select * from MCUData", connect2);
                     SqlDataReader read = readCommand.ExecuteReader();
-                    
+
                     while (read.Read())
                     {
                         int MCUId = (int)read["MCUId"];
@@ -68,66 +70,70 @@ namespace Agrivolution
                         double temperature = Convert.ToDouble(read["Temperature"]);
                         double CO2Level = Convert.ToDouble(read["CO2"]);
                         double humidityLevel = Convert.ToDouble(read["Humidity"]);
+                        String userNameValue = read["UserName"].ToString();
                         SqlCommand command;
-                        if (temperature > 75.0)
+                        if (userNameValue.Equals(currentUser))
                         {
-                            errorId = 0;
-                            command = new SqlCommand("Insert into Warnings(MCUId, ErrorId, Message, TimeStamp) values (@MCUId, @ErrorId, @Message, @TimeStamp)", connect);
-                            command.Parameters.AddWithValue("@MCUId", MCUId);
-                            command.Parameters.AddWithValue("@ErrorId", errorId);
-                            command.Parameters.AddWithValue("@Message", createWarningMessage(MCUId, errorId));
-                            command.Parameters.AddWithValue("@TimeStamp", DateTime.Now.ToString("hh:mm"));
-                            command.ExecuteNonQuery();
-                        }
-                        if (temperature < 25.0)
-                        {
-                            errorId = 1;
-                            command = new SqlCommand("Insert into Warnings(MCUId, ErrorId, Message, TimeStamp) values (@MCUId, @ErrorId, @Message, @TimeStamp)", connect); 
-                            command.Parameters.AddWithValue("@MCUId", MCUId);
-                            command.Parameters.AddWithValue("@ErrorId", errorId);
-                            command.Parameters.AddWithValue("@Message", createWarningMessage(MCUId, errorId));
-                            command.Parameters.AddWithValue("@TimeStamp", DateTime.Now.ToString("hh:mm"));
-                            command.ExecuteNonQuery();
-                        }
-                        if (CO2Level > 75.0) 
-                        {
-                            errorId = 2;
-                            command = new SqlCommand("Insert into Warnings(MCUId, ErrorId, Message, TimeStamp) values (@MCUId, @ErrorId, @Message, @TimeStamp)", connect); 
-                            command.Parameters.AddWithValue("@MCUId", MCUId);
-                            command.Parameters.AddWithValue("@ErrorId", errorId);
-                            command.Parameters.AddWithValue("@Message", createWarningMessage(MCUId, errorId));
-                            command.Parameters.AddWithValue("@TimeStamp", DateTime.Now.ToString("hh:mm"));
-                            command.ExecuteNonQuery();
-                        }
-                        if (CO2Level < 25.0)
-                        {
-                            errorId = 3;
-                            command = new SqlCommand("Insert into Warnings(MCUId, ErrorId, Message, TimeStamp) values (@MCUId, @ErrorId, @Message, @TimeStamp)", connect); 
-                            command.Parameters.AddWithValue("@MCUId", MCUId);
-                            command.Parameters.AddWithValue("@ErrorId", errorId);
-                            command.Parameters.AddWithValue("@Message", createWarningMessage(MCUId, errorId));
-                            command.Parameters.AddWithValue("@TimeStamp", DateTime.Now.ToString("hh:mm"));
-                            command.ExecuteNonQuery();
-                        }
-                        if (humidityLevel > 75.0)
-                        {
-                            errorId = 4;
-                            command = new SqlCommand("Insert into Warnings(MCUId, ErrorId, Message, TimeStamp) values (@MCUId, @ErrorId, @Message, @TimeStamp)", connect); 
-                            command.Parameters.AddWithValue("@MCUId", MCUId);
-                            command.Parameters.AddWithValue("@ErrorId", errorId);
-                            command.Parameters.AddWithValue("@Message", createWarningMessage(MCUId, errorId));
-                            command.Parameters.AddWithValue("@TimeStamp", DateTime.Now.ToString("hh:mm"));
-                            command.ExecuteNonQuery();
-                        }
-                        if (humidityLevel < 25.0)
-                        {
-                            errorId = 5;
-                            command = new SqlCommand("Insert into Warnings(MCUId, ErrorId, Message, TimeStamp) values (@MCUId, @ErrorId, @Message, @TimeStamp)", connect); 
-                            command.Parameters.AddWithValue("@MCUId", MCUId);
-                            command.Parameters.AddWithValue("@ErrorId", errorId);
-                            command.Parameters.AddWithValue("@Message", createWarningMessage(MCUId, errorId));
-                            command.Parameters.AddWithValue("@TimeStamp", DateTime.Now.ToString("hh:mm"));
-                            command.ExecuteNonQuery();
+                            if (temperature > 75.0)
+                            {
+                                errorId = 0;
+                                command = new SqlCommand("Insert into Warnings(MCUId, ErrorId, Message, TimeStamp) values (@MCUId, @ErrorId, @Message, @TimeStamp)", connect);
+                                command.Parameters.AddWithValue("@MCUId", MCUId);
+                                command.Parameters.AddWithValue("@ErrorId", errorId);
+                                command.Parameters.AddWithValue("@Message", createWarningMessage(MCUId, errorId));
+                                command.Parameters.AddWithValue("@TimeStamp", DateTime.Now.ToString("hh:mm"));
+                                command.ExecuteNonQuery();
+                            }
+                            if (temperature < 25.0)
+                            {
+                                errorId = 1;
+                                command = new SqlCommand("Insert into Warnings(MCUId, ErrorId, Message, TimeStamp) values (@MCUId, @ErrorId, @Message, @TimeStamp)", connect);
+                                command.Parameters.AddWithValue("@MCUId", MCUId);
+                                command.Parameters.AddWithValue("@ErrorId", errorId);
+                                command.Parameters.AddWithValue("@Message", createWarningMessage(MCUId, errorId));
+                                command.Parameters.AddWithValue("@TimeStamp", DateTime.Now.ToString("hh:mm"));
+                                command.ExecuteNonQuery();
+                            }
+                            if (CO2Level > 75.0)
+                            {
+                                errorId = 2;
+                                command = new SqlCommand("Insert into Warnings(MCUId, ErrorId, Message, TimeStamp) values (@MCUId, @ErrorId, @Message, @TimeStamp)", connect);
+                                command.Parameters.AddWithValue("@MCUId", MCUId);
+                                command.Parameters.AddWithValue("@ErrorId", errorId);
+                                command.Parameters.AddWithValue("@Message", createWarningMessage(MCUId, errorId));
+                                command.Parameters.AddWithValue("@TimeStamp", DateTime.Now.ToString("hh:mm"));
+                                command.ExecuteNonQuery();
+                            }
+                            if (CO2Level < 25.0)
+                            {
+                                errorId = 3;
+                                command = new SqlCommand("Insert into Warnings(MCUId, ErrorId, Message, TimeStamp) values (@MCUId, @ErrorId, @Message, @TimeStamp)", connect);
+                                command.Parameters.AddWithValue("@MCUId", MCUId);
+                                command.Parameters.AddWithValue("@ErrorId", errorId);
+                                command.Parameters.AddWithValue("@Message", createWarningMessage(MCUId, errorId));
+                                command.Parameters.AddWithValue("@TimeStamp", DateTime.Now.ToString("hh:mm"));
+                                command.ExecuteNonQuery();
+                            }
+                            if (humidityLevel > 75.0)
+                            {
+                                errorId = 4;
+                                command = new SqlCommand("Insert into Warnings(MCUId, ErrorId, Message, TimeStamp) values (@MCUId, @ErrorId, @Message, @TimeStamp)", connect);
+                                command.Parameters.AddWithValue("@MCUId", MCUId);
+                                command.Parameters.AddWithValue("@ErrorId", errorId);
+                                command.Parameters.AddWithValue("@Message", createWarningMessage(MCUId, errorId));
+                                command.Parameters.AddWithValue("@TimeStamp", DateTime.Now.ToString("hh:mm"));
+                                command.ExecuteNonQuery();
+                            }
+                            if (humidityLevel < 25.0)
+                            {
+                                errorId = 5;
+                                command = new SqlCommand("Insert into Warnings(MCUId, ErrorId, Message, TimeStamp) values (@MCUId, @ErrorId, @Message, @TimeStamp)", connect);
+                                command.Parameters.AddWithValue("@MCUId", MCUId);
+                                command.Parameters.AddWithValue("@ErrorId", errorId);
+                                command.Parameters.AddWithValue("@Message", createWarningMessage(MCUId, errorId));
+                                command.Parameters.AddWithValue("@TimeStamp", DateTime.Now.ToString("hh:mm"));
+                                command.ExecuteNonQuery();
+                            }
                         }
                     }
                     read.Close();

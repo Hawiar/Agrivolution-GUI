@@ -38,12 +38,6 @@
             </p>
             <p>
                 &nbsp;</p>
-            <p>
-                <asp:LinkButton ID="addmcu" runat="server" href="AddMCU.aspx">TestAddMCU</asp:LinkButton>
-            </p>
-            <p>
-                <asp:LinkButton ID="graphs" runat="server">Test Graphs</asp:LinkButton>
-            </p>
         </div>
     </div>
 

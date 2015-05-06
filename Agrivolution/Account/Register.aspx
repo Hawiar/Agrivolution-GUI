@@ -89,8 +89,6 @@
             <asp:Label runat="server" AssociatedControlID="Address2" CssClass="col-md-2 control-label">Address Line 2</asp:Label>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="Address2" CssClass="form-control" />
-               <%-- <asp:RequiredFieldValidator runat="server" ControlToValidate="Address2"
-                    CssClass="text-danger" ErrorMessage="The Address Line 2 field is required." /> --%>
             </div>
         </div>
 

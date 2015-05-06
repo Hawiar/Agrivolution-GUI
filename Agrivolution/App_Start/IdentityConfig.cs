@@ -27,7 +27,7 @@ namespace Agrivolution
             var myMessage = new SendGridMessage();
             myMessage.AddTo(message.Destination);
             myMessage.From = new System.Net.Mail.MailAddress(
-                                "Hawiar6@gmail.com", "Hawiar Hussein (Agrivolution Admin)");
+                                "Hawiar6@gmail.com", "Agrivolution Admin");
             myMessage.Subject = message.Subject;
             myMessage.Text = message.Body;
             myMessage.Html = message.Body;

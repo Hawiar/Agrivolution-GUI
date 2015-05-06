@@ -27,7 +27,7 @@ namespace Agrivolution
                 //Parse query strings
                 typeBreak = Request.QueryString["type"];
                 keyBreak = Request.QueryString["key"];
-               
+
                 //Builds views
                 fillGroupDDL();
                 fillFacilitiesDDL();
@@ -351,20 +351,20 @@ namespace Agrivolution
             * */
         protected void editRemaining(object sender, EventArgs e)
         {
-            switch (typeBreak)
-            {
-                case "MCUId":
-                    Response.Redirect("~/editpage.aspx?type=" + typeBreak + "&key=" + keyBreak);
-                    break;
-                case "GroupName":
-                    Response.Redirect("~/Grouping/SingleGroup.aspx?GroupName=" + typeBreak + "&Msg=None");
-                    break;
-                case "Room":
-                    Response.Redirect("~/editpage.aspx?type=" + typeBreak + "&key=" + keyBreak);
-                    break;
-                default:
-                    break;
-            }
+                switch (typeBreak)
+                {
+                    case "MCUId":
+                        Response.Redirect("~/EditMCU.aspx?MCUId=" + keyBreak);
+                        break;
+                    case "GroupName":
+                        Response.Redirect("~/Grouping/SingleGroup.aspx?GroupName=" + keyBreak + "&Msg=None");
+                        break;
+                    case "Room":
+                        Response.Redirect("~/EditRoom.aspx?Room=" + keyBreak);
+                        break;
+                    default:
+                        break;
+                }
         }
 
         /*
@@ -478,7 +478,7 @@ namespace Agrivolution
         /**
          * When an item is selected within the drop down list, reload the table to display the relevant rows.
          * Modifies by selection of a "Room"
-         * */   
+         * */
         protected void ddlRoom_SelectedIndexChanged(object sender, EventArgs e)
         {
             keyBreak = this.ddlRoom.SelectedValue;

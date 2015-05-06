@@ -65,8 +65,13 @@ namespace Agrivolution.Account
                                 FailureText.Text = "Invalid login attempt";
                                 ErrorMessage.Visible = true;
                                 break;
-                       }
+                        }
                     }
+                }
+                else
+                {
+                    FailureText.Text = "The email you entered does not belong to any account. ";
+                    ErrorMessage.Visible = true;
                 }
             }
         }

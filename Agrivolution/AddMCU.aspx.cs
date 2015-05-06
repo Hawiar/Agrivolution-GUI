@@ -44,7 +44,7 @@ namespace Agrivolution
                     cmd.Parameters.AddWithValue("@GroupName", newGroup.Text);
                 }
                 else { cmd.Parameters.AddWithValue("@GroupName", groupList.Text); }
-                    
+
                 cmd.Parameters.AddWithValue("@CropType", CropType.Text);
 
                 String time = parseTimeOn(LOn.Text);
@@ -62,14 +62,16 @@ namespace Agrivolution
                 cmd.Parameters.AddWithValue("@StartDate", DateTime.Today);
 
 
-                try 
-                 {
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
-                 }
-                  catch(SqlException e)
-                  { Console.Write(e.ToString()); }
+                try
+                {
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    string redir = "EditMCU?MCUId=" + ID_text.Text;
+                    Response.Redirect(redir);
+                }
+                catch (SqlException e)
+                { Console.Write(e.ToString()); }
             }
             else { messageLabel.Text = "Page is not valid"; }
         }
@@ -96,14 +98,14 @@ namespace Agrivolution
             {
                 temp = endTime.Subtract(startTime);
             }
-                //if startTime is after endTime and
-                //startTime is after 12
+            //if startTime is after endTime and
+            //startTime is after 12
             else if (startTime.Hour >= 12 && startTime.CompareTo(endTime) > 0)
             {
                 endTime = endTime.Add(temp);
                 temp = endTime.Subtract(startTime);
             }
-            else 
+            else
             {
                 startTime = startTime.Subtract(temp);
                 startTime = startTime.AddHours(endTime.Hour);
@@ -144,7 +146,7 @@ namespace Agrivolution
         {
             if (facilityList.SelectedValue.Equals("New Facility"))
             {
-                
+
                 newFacility.Visible = true;
             }
             else { newFacility.Visible = false; }
@@ -153,7 +155,7 @@ namespace Agrivolution
 
         protected void roomList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(roomList.SelectedValue.Equals("New Room"))
+            if (roomList.SelectedValue.Equals("New Room"))
             {
                 newRoom.Visible = true;
             }
