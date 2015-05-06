@@ -223,6 +223,7 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="WarningPage.aspx" />
     <Content Include="Bundle.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -481,6 +482,13 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WarningPage.aspx.cs">
+      <DependentUpon>WarningPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WarningPage.aspx.designer.cs">
+      <DependentUpon>WarningPage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

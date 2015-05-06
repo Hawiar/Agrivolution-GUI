@@ -6,6 +6,9 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Collections;
+using System.Data;
 
 namespace Agrivolution
 {
@@ -14,8 +17,9 @@ namespace Agrivolution
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
+        String connString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-        protected void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs a)
         {
             // The code below helps to protect against XSRF attacks
             var requestCookie = Request.Cookies[AntiXsrfTokenKey];
@@ -74,6 +78,25 @@ namespace Agrivolution
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
             Context.GetOwinContext().Authentication.SignOut();
+        }
+
+        // Obtains and returns the total number of warnings currently in the Warnings Table
+        protected int getNumberOfWarnings()
+        {
+            int numberOfWarnings;
+            try
+            {
+                SqlConnection connect = new SqlConnection(connString);
+                connect.Open();
+                SqlCommand command = new SqlCommand("select count (*) from Warnings", connect);
+                numberOfWarnings = (int)command.ExecuteScalar();
+                return numberOfWarnings;
+            }
+            catch (SqlException e)
+            {
+                Console.Write(e.ToString());
+                throw e;
+            }
         }
     }
 
