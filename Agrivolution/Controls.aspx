@@ -68,5 +68,4 @@
             <asp:BoundField DataField="CropType" runat="server" HeaderText="Crop Type" />
         </Columns>
     </asp:GridView>
-
 </asp:Content>

@@ -72,7 +72,6 @@ namespace Agrivolution
             humidity = ((Label)StatsBlock.FindControl("Humidity"));
             humidity.Text = "Test??";
         }
-        
 
         /*
          * On Click of a Room, simplify the total list of MCUs being displayed to just those within the room.
