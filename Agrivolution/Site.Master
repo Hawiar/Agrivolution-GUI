@@ -50,11 +50,19 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+<<<<<<< HEAD
                         <li><a runat="server" href="Home.aspx">Home</a></li>
                         <li><a runat="server" href="Controls.aspx">Controls</a></li>
                         <li><a runat="server" href="Data.aspx">Data</a></li>
                         <li><a runat="server" href="Settings.aspx">Settings</a></li>
                         <li><a runat="server" href="~/WarningPage.aspx">Warnings (<%=getNumberOfWarnings()%>)</a></li>
+=======
+                        <li><a runat="server" href="Home.html">Home</a></li>
+                        <li><a runat="server" href="~/Controls.aspx">Controls</a></li>
+                        <li><a runat="server" href="Data.html">Data</a></li>
+                        <li><a runat="server" href="~/Grouping/GroupSearch.aspx">Grouping</a></li>
+                        <li><a runat="server" href="Settings.html">Settings</a></li>
+>>>>>>> 6d04d7106e7516c965f37e8659307a61e926e55e
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>

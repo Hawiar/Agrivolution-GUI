@@ -10,7 +10,7 @@ using Agrivolution.Models;
 
 namespace Agrivolution.Models
 {
-    // You can add User data for the user by adding more properties to your User class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
+    // You can add a User data for the user by adding more properties to your User class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
         public ClaimsIdentity GenerateUserIdentity(ApplicationUserManager manager)
@@ -25,6 +25,26 @@ namespace Agrivolution.Models
         {
             return Task.FromResult(GenerateUserIdentity(manager));
         }
+
+        public string Address1 { get; set; }
+
+        public string Address2 { get; set; }
+
+        public string State { get; set; }
+
+        public string City { get; set; }
+
+        public string Zip { get; set; }
+
+        public string TimeZone { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Phone { get; set; }
+
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
