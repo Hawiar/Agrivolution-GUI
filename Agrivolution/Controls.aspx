@@ -19,14 +19,20 @@
     </style>
 
     <h2><%: "Controls: " + Page.Title%></h2>
+
+    <asp:DropDownList ID="ddlFacility" runat="server" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
+    <asp:DropDownList ID="ddlRoom" runat="server" OnSelectedIndexChanged="ddlRoom_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
+    <asp:DropDownList ID="ddlGroup" runat="server" OnSelectedIndexChanged="ddlGroup_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
+
+    <br />
     <asp:Button ID="resetButton" runat="server" Text="Reset List" OnClick="resetVisibility" UseSubmitBehavior="false" />
     <asp:Button ID="goToEditButton" runat="server" Text="Edit MCUs" OnClick="editRemaining" UseSubmitBehavior="false" />
 
-    <asp:GridView runat="server" AutoGenerateColumns="False" ID="resultsGrid" AllowPaging="True" AllowSorting="True" PageSize="20" DataKeyNames="MCUID" DataSourceID="SqlDataSource1">
+    <asp:GridView runat="server" AutoGenerateColumns="False" ID="resultsGrid" AllowPaging="True" OnPageIndexChanging="resultsGrid_PageIndexChanging" AutoPostBack="True" AllowSorting="True" OnSorting="resultsGrid_Sorting" PageSize="20">
         <Columns>
-            <asp:TemplateField HeaderText="MCUID" SortExpression="MCUID">
+            <asp:TemplateField HeaderText="MCUId" SortExpression="MCUId">
                 <ItemTemplate>
-                    <asp:Button ID="MCUID" runat="server" Text='<%# Eval("MCUID") %>' OnClick="mcuidClick" UseSubmitBehavior="false" />
+                    <asp:Button ID="MCUId" runat="server" Text='<%# Eval("MCUId") %>' OnClick="mcuidClick" UseSubmitBehavior="false" />
                 </ItemTemplate>
             </asp:TemplateField>
 
@@ -42,30 +48,31 @@
                 </ItemTemplate>
             </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Status" SortExpression="Status">
+            <asp:TemplateField HeaderText="Group" SortExpression="GroupName">
                 <ItemTemplate>
-                    <asp:Label ID="Status" runat="server" Text='<%#Eval("Status") %>' />
+                    <asp:Button ID="GroupName" runat="server" Text='<%#Eval("GroupName") %>' OnClick="groupClick" UseSubmitBehavior="false" />
                 </ItemTemplate>
             </asp:TemplateField>
 
-
-            <asp:TemplateField HeaderText="Group" SortExpression="Group">
+            <asp:TemplateField HeaderText="Crop Type" SortExpression="CropType">
                 <ItemTemplate>
-                    <asp:Button ID="Group" runat="server" Text='<%#Eval("Group") %>' OnClick="groupClick" UseSubmitBehavior="false" />
+                    <asp:Label ID="CropType" runat="server" Text='<%#Eval("CropType") %>' />
                 </ItemTemplate>
             </asp:TemplateField>
 
         </Columns>
 
     </asp:GridView>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT * FROM [MCUList]"></asp:SqlDataSource>
-
-    <asp:GridView ID="StatsBlock" runat="server" AutoGenerateColumns="False" AllowPaging="False" AllowSorting="False" DataSourceID="SqlDataSource1">
+    <br />
+    <asp:GridView ID="StatsBlock" runat="server" AutoGenerateColumns="False" AllowPaging="False" AllowSorting="False">
         <Columns>
-            <asp:BoundField DataField="Humidity" runat="server" HeaderText="Humidity" />
-            <asp:BoundField DataField="CO2Level" runat="server" HeaderText="CO2 Humidity" />
-            <asp:BoundField DataField="LightStatus" runat="server" HeaderText="Light Status" />
-            <asp:BoundField DataField="CropType" runat="server" HeaderText="Crop Type" />
+            <asp:BoundField DataField="Humidity" runat="server" HeaderText="Humidity" Visible="true" />
+            <asp:BoundField DataField="Temperature" runat="server" HeaderText="Temperature" Visible="true" />
+            <asp:BoundField DataField="CO2" runat="server" HeaderText="CO2 Level" Visible="true" />
+            <asp:BoundField DataField="LightStatus" runat="server" HeaderText="Light Status" Visible="true" />
+            <asp:BoundField DataField="FanStatus" runat="server" HeaderText="Fan Status" Visible="true" />
+            <asp:BoundField DataField="LightOn" runat="server" HeaderText="Light On Time" Visible="true" />
+            <asp:BoundField DataField="LightOff" runat="server" HeaderText="Light Off Time" Visible="true" />
         </Columns>
     </asp:GridView>
 </asp:Content>
