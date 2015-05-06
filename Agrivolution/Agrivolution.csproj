@@ -172,6 +172,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="EditMCU.aspx" />
+    <Content Include="EditRoom.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Controls.aspx" />
     <Content Include="Grouping\GroupSearch.aspx" />
@@ -370,6 +371,13 @@
     </Compile>
     <Compile Include="EditMCU.aspx.designer.cs">
       <DependentUpon>EditMCU.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditRoom.aspx.cs">
+      <DependentUpon>EditRoom.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditRoom.aspx.designer.cs">
+      <DependentUpon>EditRoom.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

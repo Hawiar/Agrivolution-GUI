@@ -40,6 +40,15 @@ namespace Agrivolution {
         protected global::System.Web.UI.WebControls.SqlDataSource MCUAttributeSource;
         
         /// <summary>
+        /// fanLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label fanLabel;
+        
+        /// <summary>
         /// fanSwitch control.
         /// </summary>
         /// <remarks>
@@ -49,13 +58,76 @@ namespace Agrivolution {
         protected global::System.Web.UI.WebControls.DropDownList fanSwitch;
         
         /// <summary>
-        /// lightTimerValue control.
+        /// lightCycleLable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lightTimerValue;
+        protected global::System.Web.UI.WebControls.Label lightCycleLable;
+        
+        /// <summary>
+        /// startLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label startLabel;
+        
+        /// <summary>
+        /// startTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox startTime;
+        
+        /// <summary>
+        /// endLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label endLabel;
+        
+        /// <summary>
+        /// endTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox endTime;
+        
+        /// <summary>
+        /// startSelect control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList startSelect;
+        
+        /// <summary>
+        /// endSelect control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList endSelect;
+        
+        /// <summary>
+        /// cropLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label cropLabel;
         
         /// <summary>
         /// cropType control.
@@ -74,6 +146,15 @@ namespace Agrivolution {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button setMCUButon;
+        
+        /// <summary>
+        /// functionalityUnavailable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label functionalityUnavailable;
         
         /// <summary>
         /// returnButton control.
